@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, SafeAreaView} from 'react-native';
+import {TopTabs} from '../Components/TopTabs';
 
 const MoviesScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>MoviesScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
