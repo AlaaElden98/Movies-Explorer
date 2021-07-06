@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View, SafeAreaView} from 'react-native';
-import Config from 'react-native-config';
+import {getPopularMovies} from '../Api/getMovies';
 const MoviesScreen = () => {
-  console.log(Config.API_KEY);
+  getPopularMovies();
   return (
     <SafeAreaView>
       <Text>MoviesScreen</Text>
