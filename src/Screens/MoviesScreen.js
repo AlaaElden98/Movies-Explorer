@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, View, SafeAreaView} from 'react-native';
-import {TopTabs} from '../Components/TopTabs';
-
+import Config from 'react-native-config';
 const MoviesScreen = () => {
+  console.log(Config.API_KEY);
   return (
     <SafeAreaView>
       <Text>MoviesScreen</Text>
