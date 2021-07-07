@@ -12,19 +12,7 @@ const TOP_RATED = 'top_rated';
 const LATEST = 'latest';
 const API_KEY_QUERY = 'api_key=';
 
-export const generateUrl = (isMovie, type) => {
-  let typePath;
-  switch (type) {
-    case 1:
-      typePath = POPULAR_PATH;
-    case 2:
-      typePath = TOP_RATED;
-    case 3:
-      typePath = LATEST;
-      break;
-    default:
-      typePath = POPULAR_PATH;
-  }
+export const generateUrl = (isMovie, type, pageNumber = 0) => {
   const url =
     TMDB_BASE_URL +
     '/' +
@@ -32,10 +20,22 @@ export const generateUrl = (isMovie, type) => {
     '/' +
     (isMovie ? MOVIE_PATH : TV_PATH) +
     '/' +
-    typePath +
+    (type == 1 ? POPULAR_PATH : type == 2 ? TOP_RATED : LATEST) +
     '?' +
     API_KEY_QUERY +
     API_KEY;
+  return pageNumber == 0 ? url : url + `&page=${pageNumber}`;
+};
 
-  return url;
+export const generateConfigUrl = () => {
+  return (
+    TMDB_BASE_URL +
+    '/' +
+    API_VERSION +
+    '/' +
+    CONFIGURATION_PATH +
+    '?' +
+    API_KEY_QUERY +
+    API_KEY
+  );
 };

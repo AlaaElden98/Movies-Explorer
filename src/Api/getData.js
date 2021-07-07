@@ -7,17 +7,12 @@ import {generateUrl} from './generateUrl';
  * @param {boolean} isMovie if true, the path = movies, otherwise path = tv shows
  * @param {number} type 1 for popular, 2 for top rated, 3 for latest
  */
-export const getDataAbout = (isMovie, type) => {
-  const url = generateUrl(isMovie, type);
-  axios
-    .get(url)
-    .then(response => {
-      console.log(response.status);
-    })
-    .catch(error => {
-      console.log(error);
-    })
-    .then(() => {
-      console.log('FINALLY');
-    });
+export const getDataAbout = async (isMovie, type, pageNumber) => {
+  const url = generateUrl(isMovie, type, pageNumber);
+  try {
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
