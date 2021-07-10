@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {Text, View, SafeAreaView, FlatList} from 'react-native';
 
 import {getDataAbout} from '../Api/getData';
-import {Header} from '../Components/Header';
 import {Card} from '../Components/Card';
 import {getImagesBaseUrl} from '../Api/getImagesBaseUrl';
+import DetailsScreen from './DetailsScreen';
 
 const MoviesScreen = () => {
   const [movies, setMovies] = useState();
@@ -45,7 +45,6 @@ const MoviesScreen = () => {
   };
   return (
     <SafeAreaView>
-      <Header title="Movies" backgroundColor="white" titleColor="black" />
       <FlatList
         data={movies}
         renderItem={renderItem}

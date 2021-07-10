@@ -3,10 +3,6 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import MoviesScreen from '../Screens/MoviesScreen';
-import TvShowesScreen from '../Screens/TvShowesScreen';
-import MyListScreen from '../Screens/MyListScreen';
-import SuggestScreen from '../Screens/SuggestScreen';
 import {
   BUTTOM_TABS_ACTIVE_BACKGROUND_COLOR,
   BUTTOM_TABS_ACTIVE_TINT_COLOR,
@@ -14,7 +10,12 @@ import {
   BUTTOM_TABS_LABELS_SIZE,
 } from '../Constants/ButtomTabsVars';
 import {responsiveFontSize, responsiveWidth} from '../Utilis/helperFunctions';
-
+import {
+  MoviesStackScreen,
+  RandomStackScreen,
+  TvShowsStackScreen,
+  MyListStackScreen,
+} from '../NavigationStacks/index';
 const Tab = createBottomTabNavigator();
 
 export const ButtomTabs = () => {
@@ -30,7 +31,7 @@ export const ButtomTabs = () => {
       }}>
       <Tab.Screen
         name="Movies"
-        component={MoviesScreen}
+        component={MoviesStackScreen}
         options={{
           title: 'Movies',
           tabBarIcon: () => (
@@ -43,7 +44,7 @@ export const ButtomTabs = () => {
       />
       <Tab.Screen
         name="TvShows"
-        component={TvShowesScreen}
+        component={TvShowsStackScreen}
         options={{
           title: 'Tv shows',
           tabBarIcon: () => (
@@ -55,8 +56,8 @@ export const ButtomTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Suggest"
-        component={SuggestScreen}
+        name="Random"
+        component={RandomStackScreen}
         options={{
           title: 'Random',
           tabBarIcon: () => (
@@ -69,7 +70,7 @@ export const ButtomTabs = () => {
       />
       <Tab.Screen
         name="MyList"
-        component={MyListScreen}
+        component={MyListStackScreen}
         options={{
           title: 'My list',
           tabBarIcon: () => (

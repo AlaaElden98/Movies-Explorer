@@ -1,13 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-
-const MyListScreen = () => {
+const RandomScreen = () => {
   return (
     <View>
-      <Text>MyListScreen</Text>
+      <Text>Random Screen</Text>
     </View>
   );
 };
 
-export default MyListScreen;
+export default RandomScreen;

@@ -1,13 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-
-const MyListScreen = () => {
+const DetailsScreen = () => {
   return (
     <View>
-      <Text>MyListScreen</Text>
+      <Text>Details Screen</Text>
     </View>
   );
 };
 
-export default MyListScreen;
+export default DetailsScreen;
