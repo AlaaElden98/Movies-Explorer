@@ -47,7 +47,7 @@ const MoviesScreen = ({navigation}) => {
           imageUri={
             item.poster_path != null
               ? imageBaseUrl + 'original' + item.poster_path
-              : null
+              : 'NO_IMAGE'
           }
         />
       </TouchableOpacity>

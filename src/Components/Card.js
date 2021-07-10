@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {View, Text, Image, StyleSheet} from 'react-native';
 
 import {responsiveFontSize, responsiveWidth} from '../Utilis/helperFunctions';
+
 export const Card = props => {
   const {imageUri, title, overview, rate, date} = props;
   return (
     <View style={styles.container}>
       <Image
         source={
-          imageUri == null
+          imageUri == 'NO_IMAGE'
             ? require('../assests/NO_IMAGE.jpg')
             : {
                 uri: imageUri,
@@ -57,3 +59,11 @@ const styles = StyleSheet.create({
   date: {fontSize: responsiveFontSize(2), color: 'grey', fontStyle: 'italic'},
   rightSideContainer: {flex: 1},
 });
+
+Card.propTypes = {
+  title: PropTypes.string,
+  imageUri: PropTypes.string,
+  overview: PropTypes.string,
+  rate: PropTypes.string,
+  date: PropTypes.string,
+};
