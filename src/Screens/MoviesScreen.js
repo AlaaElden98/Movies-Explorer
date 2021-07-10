@@ -1,12 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, SafeAreaView, FlatList} from 'react-native';
+import {
+  Text,
+  View,
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 
 import {getDataAbout} from '../Api/getData';
 import {Card} from '../Components/Card';
 import {getImagesBaseUrl} from '../Api/getImagesBaseUrl';
 import DetailsScreen from './DetailsScreen';
 
-const MoviesScreen = () => {
+const MoviesScreen = ({navigation}) => {
   const [movies, setMovies] = useState();
   const [pageNumber, setPageNumber] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
@@ -31,13 +37,20 @@ const MoviesScreen = () => {
 
   const renderItem = ({item}) => {
     return (
-      <Card
-        title={item.title}
-        overview={item.overview}
-        rate={item.vote_average}
-        date={item.release_date}
-        imageUri={imageBaseUrl + 'original' + item.poster_path}
-      />
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Details', {details: item})}>
+        <Card
+          title={item.title}
+          overview={item.overview}
+          rate={item.vote_average}
+          date={item.release_date}
+          imageUri={
+            item.poster_path != null
+              ? imageBaseUrl + 'original' + item.poster_path
+              : null
+          }
+        />
+      </TouchableOpacity>
     );
   };
   const fetchNextPage = () => {

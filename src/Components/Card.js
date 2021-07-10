@@ -7,9 +7,14 @@ export const Card = props => {
   return (
     <View style={styles.container}>
       <Image
-        source={{
-          uri: imageUri,
-        }}
+        source={
+          imageUri == null
+            ? require('../assests/NO_IMAGE.jpg')
+            : {
+                uri: imageUri,
+              }
+        }
+        resizeMode="stretch"
         style={styles.image}
       />
       <View style={styles.rightSideContainer}>
