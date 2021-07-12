@@ -64,6 +64,6 @@ Card.propTypes = {
   title: PropTypes.string,
   imageUri: PropTypes.string,
   overview: PropTypes.string,
-  rate: PropTypes.string,
+  rate: PropTypes.number.isRequired,
   date: PropTypes.string,
 };

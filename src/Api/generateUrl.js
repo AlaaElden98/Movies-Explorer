@@ -11,7 +11,7 @@ const POPULAR_PATH = 'popular';
 const TOP_RATED = 'top_rated';
 const LATEST = 'latest';
 const API_KEY_QUERY = 'api_key=';
-
+const CREDITS_PATH = 'credits';
 export const generateUrl = (isMovie, type, pageNumber = 0) => {
   const url =
     TMDB_BASE_URL +
@@ -34,6 +34,38 @@ export const generateConfigUrl = () => {
     API_VERSION +
     '/' +
     CONFIGURATION_PATH +
+    '?' +
+    API_KEY_QUERY +
+    API_KEY
+  );
+};
+
+export const generateDetailsUrl = (isMovie, ID) => {
+  return (
+    TMDB_BASE_URL +
+    '/' +
+    API_VERSION +
+    '/' +
+    (isMovie ? MOVIE_PATH : TV_PATH) +
+    '/' +
+    ID +
+    '?' +
+    API_KEY_QUERY +
+    API_KEY
+  );
+};
+
+export const generateCreditsUrl = (isMovie, ID) => {
+  return (
+    TMDB_BASE_URL +
+    '/' +
+    API_VERSION +
+    '/' +
+    (isMovie ? MOVIE_PATH : TV_PATH) +
+    '/' +
+    ID +
+    '/' +
+    CREDITS_PATH +
     '?' +
     API_KEY_QUERY +
     API_KEY

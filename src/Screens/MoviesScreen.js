@@ -1,16 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Text,
-  View,
-  SafeAreaView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, FlatList, TouchableOpacity} from 'react-native';
 
 import {getDataAbout} from '../Api/getData';
 import {Card} from '../Components/Card';
 import {getImagesBaseUrl} from '../Api/getImagesBaseUrl';
-import DetailsScreen from './DetailsScreen';
 
 const MoviesScreen = ({navigation}) => {
   const [movies, setMovies] = useState();
@@ -32,13 +25,18 @@ const MoviesScreen = ({navigation}) => {
   useEffect(async () => {
     const uri = await getImagesBaseUrl();
     setImageBaseUrl(uri);
-    console.log('AAAAAA');
   }, []);
 
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate('Details', {details: item})}>
+        onPress={() => {
+          navigation.navigate('Details', {
+            parent: 'movies',
+            id: item.id,
+            imageBaseUrl: imageBaseUrl,
+          });
+        }}>
         <Card
           title={item.title}
           overview={item.overview}
