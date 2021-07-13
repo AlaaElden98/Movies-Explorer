@@ -31,3 +31,8 @@ export const responsiveWidth = val => {
   const {width} = Dimensions.get('window');
   return percentageCalculation(width, val);
 };
+
+export const responsiveHeight = val => {
+  const {height} = Dimensions.get('window');
+  return percentageCalculation(height, val);
+};

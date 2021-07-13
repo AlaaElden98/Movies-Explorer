@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {ScrollView} from 'react-native';
 
-import {responsiveFontSize, responsiveWidth} from '../Utilis/helperFunctions';
+import {PosterRow} from './PosterRow';
 
 export const DetailsCard = props => {
   const {
@@ -17,23 +17,35 @@ export const DetailsCard = props => {
     budget,
     original_language,
     poster_path,
+    backdrop_path,
     homepage, // could be null
     genres, // [id,name]
     cast, // [name, profile_path]
   } = props.details;
 
+  const [showImage, setShowImage] = useState(false);
   const imageBaseUrl = props.imageBaseUrl;
 
   const ImageUrl = path => {
     return path != null ? imageBaseUrl + 'original' + path : 'NO_IMAGE';
   };
+
+  const images = [{uri: ImageUrl(poster_path)}, {uri: ImageUrl(backdrop_path)}];
+  const handleImage = () => {
+    setShowImage(!showImage);
+  };
   return (
-    <View>
-      <Text>{title}</Text>
-      <Text>{vote_average}</Text>
-      <Text>{cast[0].name}</Text>
-      <Text>{homepage}</Text>
-    </View>
+    <ScrollView>
+      <PosterRow
+        images={images}
+        onPress={handleImage}
+        showImage={showImage}
+        backgroundImage={ImageUrl(backdrop_path)}
+        title={title}
+        tagline={tagline}
+        rate={vote_average}
+      />
+    </ScrollView>
   );
 };
 
