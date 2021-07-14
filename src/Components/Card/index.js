@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image} from 'react-native';
 
-import {responsiveFontSize, responsiveWidth} from '../Utilis/helperFunctions';
+import {styles} from './styles';
 
 export const Card = props => {
   const {imageUri, title, overview, rate, date} = props;
@@ -11,7 +11,7 @@ export const Card = props => {
       <Image
         source={
           imageUri == 'NO_IMAGE'
-            ? require('../assests/NO_IMAGE.jpg')
+            ? require('../../assests/NO_IMAGE.jpg')
             : {
                 uri: imageUri,
               }
@@ -32,33 +32,6 @@ export const Card = props => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'row',
-    padding: 10,
-    margin: 8,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    borderWidth: 0,
-  },
-  imageContainer: {},
-  image: {
-    width: responsiveWidth(30),
-    height: responsiveWidth(65),
-    borderRadius: 8,
-  },
-  title: {
-    fontSize: responsiveFontSize(3),
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-  },
-  overview: {fontSize: responsiveFontSize(2)},
-  rate: {},
-  date: {fontSize: responsiveFontSize(2), color: 'grey', fontStyle: 'italic'},
-  rightSideContainer: {flex: 1},
-});
 
 Card.propTypes = {
   title: PropTypes.string,
