@@ -32,7 +32,7 @@ const MoviesScreen = ({navigation}) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Details', {
-            parent: 'movies',
+            parent: 'movie',
             id: item.id,
             imageBaseUrl: imageBaseUrl,
           });

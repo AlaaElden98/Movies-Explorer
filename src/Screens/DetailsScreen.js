@@ -10,9 +10,9 @@ const DetailsScreen = ({route}) => {
   const {parent, id, imageBaseUrl} = route.params;
   const [details, setDetails] = useState();
   const getMovieDetail = async () => {
-    const data = await getDetails(parent == 'movies' ? true : false, id);
-    const credits = await getCredits(parent == 'movies' ? true : false, id);
-    setDetails({...data, ...credits});
+    const data = await getDetails(parent == 'movie' ? true : false, id);
+    const credits = await getCredits(parent == 'movie' ? true : false, id);
+    setDetails({...data, ...credits, id: id, parent: parent});
   };
   useEffect(() => {
     getMovieDetail();
@@ -29,7 +29,7 @@ const DetailsScreen = ({route}) => {
 };
 
 DetailsScreen.propTypes = {
-  parent: PropTypes.oneOf(['movies', 'tv']),
+  parent: PropTypes.oneOf(['movie', 'tv']),
   id: PropTypes.number,
   imageUri: PropTypes.string,
 };

@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {ScrollView} from 'react-native';
+import {Button, ScrollView, View} from 'react-native';
 
 import {PosterRow} from './PosterRow';
-
+import {ButtonsRow} from './ButtonsRow';
 export const DetailsCard = props => {
   const {
+    id,
+    parent,
     title,
     overview, // could be null
     vote_average,
@@ -45,6 +47,7 @@ export const DetailsCard = props => {
         tagline={tagline}
         rate={vote_average}
       />
+      <ButtonsRow homepage={homepage} title={title} id={id} parent={parent} />
     </ScrollView>
   );
 };

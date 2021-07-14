@@ -13,7 +13,7 @@ export const PosterRow = props => {
       <TouchableOpacity
         style={styles.container}
         activeOpacity={0.8}
-        onPress={() => onPress()}>
+        onPress={onPress}>
         <ImageBackground
           source={{uri: backgroundImage}}
           resizeMode="cover"
