@@ -21,16 +21,16 @@ export const DetailsRow = props => {
   } = props;
 
   const DATA = [
-    {title: 'Language', body: language[original_language]},
-    {title: 'Status', body: status},
-    {title: 'Date', body: release_date},
     {
       title: 'Duration',
       body: runtime ? convertMinutesToReadableTime(runtime) : '-',
     },
-    {title: 'Budget', body: converToDollars(budget)},
-    {title: 'Revenue', body: converToDollars(revenue)},
     {title: 'Genres', body: getGenresNames(genres)},
+    {title: 'Language', body: language[original_language]},
+    {title: 'Status', body: status},
+    {title: 'Date', body: release_date},
+    {title: 'Budget', body: budget == 0 ? '-' : converToDollars(budget)},
+    {title: 'Revenue', body: revenue == 0 ? '-' : converToDollars(revenue)},
   ];
   const renderItem = ({item}) => {
     return (

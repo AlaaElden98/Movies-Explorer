@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import {getDetails} from '../Api/getDetails';
 import {getCredits} from '../Api/getCredits';
-import {DetailsCard} from '../Components/DetailsCard';
+import {DetailsCard} from '../Components/DetailsCardjs';
 
 const DetailsScreen = ({route}) => {
   const {parent, id, imageBaseUrl} = route.params;

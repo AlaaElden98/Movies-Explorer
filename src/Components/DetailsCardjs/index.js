@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import {Button, ScrollView, View} from 'react-native';
+import {ScrollView, View, Text} from 'react-native';
 
-import {PosterRow} from './PosterRow';
-import {ButtonsRow} from './ButtonsRow';
-import {DetailsRow} from './DetailsRow.js';
+import {PosterRow} from '../PosterRow';
+import {ButtonsRow} from '../ButtonsRow';
+import {DetailsRow} from '../DetailsRow.js/index.js';
+import {styles} from './styles';
+
 export const DetailsCard = props => {
   const {
     id,
@@ -58,6 +60,12 @@ export const DetailsCard = props => {
         original_language={original_language}
         genres={genres}
       />
+      {overview && (
+        <View style={styles.overvieContainer}>
+          <Text style={styles.overviewTitle}>Overview</Text>
+          <Text style={styles.overviewBody}>{overview}</Text>
+        </View>
+      )}
     </ScrollView>
   );
 };
