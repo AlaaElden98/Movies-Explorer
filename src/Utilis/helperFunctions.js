@@ -36,3 +36,24 @@ export const responsiveHeight = val => {
   const {height} = Dimensions.get('window');
   return percentageCalculation(height, val);
 };
+
+export const convertMinutesToReadableTime = time => {
+  let hours = (time / 60).toFixed();
+  if (hours < 10) hours = '0' + hours;
+  const minutes = time % 60;
+  return `${hours}h ${minutes}m`;
+};
+
+export const converToDollars = val => {
+  return '$' + val.toFixed(1).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+};
+
+export const getGenresNames = val => {
+  // val = [{id,name},{id,name}]
+  let result = '';
+  for (let i = 0; i < val.length; ++i) {
+    result += val[i].name;
+    result += i === val.length - 1 ? '.' : ', ';
+  }
+  return result;
+};

@@ -8,6 +8,7 @@ import {
   Linking,
 } from 'react-native';
 import Toast from 'react-native-toast-message';
+import {responsiveFontSize} from '../../Utilis/helperFunctions';
 
 import {Touchable} from '../Touchable';
 import {styles} from './styles';
@@ -62,26 +63,26 @@ export const ButtonsRow = props => {
       <Touchable
         onPress={handleAddToList}
         title="My list"
-        titleSize={18}
+        titleSize={responsiveFontSize(2.2)}
         iconName={MyListIconName}
         iconPlace="top"
-        iconSize={28}
+        iconSize={responsiveFontSize(4)}
       />
       <Touchable
         onPress={handleShare}
         title="Share"
-        titleSize={18}
+        titleSize={responsiveFontSize(2.2)}
         iconName="share-variant"
         iconPlace="top"
-        iconSize={28}
+        iconSize={responsiveFontSize(4)}
       />
       <Touchable
         onPress={handleOfficialPage}
         title="Official page"
-        titleSize={18}
+        titleSize={responsiveFontSize(2.2)}
         iconName="web"
         iconPlace="top"
-        iconSize={28}
+        iconSize={responsiveFontSize(4)}
       />
     </View>
   );

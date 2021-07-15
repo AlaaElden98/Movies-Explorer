@@ -4,6 +4,7 @@ import {Button, ScrollView, View} from 'react-native';
 
 import {PosterRow} from './PosterRow';
 import {ButtonsRow} from './ButtonsRow';
+import {DetailsRow} from './DetailsRow.js';
 export const DetailsCard = props => {
   const {
     id,
@@ -48,6 +49,15 @@ export const DetailsCard = props => {
         rate={vote_average}
       />
       <ButtonsRow homepage={homepage} title={title} id={id} parent={parent} />
+      <DetailsRow
+        runtime={runtime}
+        status={status}
+        revenue={revenue}
+        release_date={release_date}
+        budget={budget}
+        original_language={original_language}
+        genres={genres}
+      />
     </ScrollView>
   );
 };
