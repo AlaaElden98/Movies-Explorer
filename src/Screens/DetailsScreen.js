@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, ScrollView} from 'react-native';
+import {Text, View} from 'react-native';
 import PropTypes from 'prop-types';
 
 import {getDetails} from '../Api/getDetails';
@@ -18,13 +18,13 @@ const DetailsScreen = ({route}) => {
     getMovieDetail();
   }, []);
   return (
-    <ScrollView>
+    <View style={{flex: 1}}>
       {details ? (
         <DetailsCard details={details} imageBaseUrl={imageBaseUrl} />
       ) : (
         <Text>Loading...</Text>
       )}
-    </ScrollView>
+    </View>
   );
 };
 

@@ -7,6 +7,7 @@ import {ButtonsRow} from '../ButtonsRow';
 import {DetailsRow} from '../DetailsRow';
 import {CastRow} from '../CastRow';
 import {ImageUrl} from '../../Utilis/helperFunctions';
+import {PersonModal} from '../PersonModal';
 import {styles} from './styles';
 
 export const DetailsCard = props => {
@@ -29,10 +30,11 @@ export const DetailsCard = props => {
     genres, // [id,name]
     cast, // [name, profile_path, id]
   } = props.details;
-
-  const [showImage, setShowImage] = useState(false);
   const imageBaseUrl = props.imageBaseUrl;
 
+  const [showImage, setShowImage] = useState(false);
+  const [modal, showModal] = useState(false);
+  const [ids, setId] = useState();
   const images = [
     {uri: ImageUrl(imageBaseUrl, poster_path)},
     {uri: ImageUrl(imageBaseUrl, backdrop_path)},
@@ -40,35 +42,47 @@ export const DetailsCard = props => {
   const handleImage = () => {
     setShowImage(!showImage);
   };
+  const handleModal = ids => {
+    console.log(ids);
+    showModal(true);
+    setId(ids);
+  };
   return (
-    <ScrollView>
-      <PosterRow
-        images={images}
-        onPress={handleImage}
-        showImage={showImage}
-        backgroundImage={ImageUrl(imageBaseUrl, backdrop_path)}
-        title={title}
-        tagline={tagline}
-        rate={vote_average}
-      />
-      <ButtonsRow homepage={homepage} title={title} id={id} parent={parent} />
-      <DetailsRow
-        runtime={runtime}
-        status={status}
-        revenue={revenue}
-        release_date={release_date}
-        budget={budget}
-        original_language={original_language}
-        genres={genres}
-      />
-      {overview && (
-        <View style={styles.overvieContainer}>
-          <Text style={styles.overviewTitle}>Overview</Text>
-          <Text style={styles.overviewBody}>{overview}</Text>
-        </View>
-      )}
-      <CastRow cast={cast} imageBaseUrl={imageBaseUrl} />
-    </ScrollView>
+    <View style={styles.container}>
+      <ScrollView>
+        <PosterRow
+          images={images}
+          onPress={handleImage}
+          showImage={showImage}
+          backgroundImage={ImageUrl(imageBaseUrl, backdrop_path)}
+          title={title}
+          tagline={tagline}
+          rate={vote_average}
+        />
+        <ButtonsRow homepage={homepage} title={title} id={id} parent={parent} />
+        <DetailsRow
+          runtime={runtime}
+          status={status}
+          revenue={revenue}
+          release_date={release_date}
+          budget={budget}
+          original_language={original_language}
+          genres={genres}
+        />
+        {overview && (
+          <View style={styles.overvieContainer}>
+            <Text style={styles.overviewTitle}>Overview</Text>
+            <Text style={styles.overviewBody}>{overview}</Text>
+          </View>
+        )}
+        <CastRow
+          cast={cast}
+          imageBaseUrl={imageBaseUrl}
+          handleModal={id => handleModal(id)}
+        />
+      </ScrollView>
+      {modal && <PersonModal id={ids} onClosed={() => showModal(false)} />}
+    </View>
   );
 };
 

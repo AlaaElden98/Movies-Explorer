@@ -1,18 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Text, FlatList, Image, View, TouchableOpacity} from 'react-native';
 
 import {ImageUrl} from '../../Utilis/helperFunctions';
 import {styles} from './styles';
 
 export const CastRow = props => {
-  const {cast, imageBaseUrl} = props;
+  const {cast, imageBaseUrl, handleModal} = props;
   //   cast = [name, profile_path, id]
-
+  const handlePress = id => {
+    handleModal(id);
+  };
   const renderItem = ({item}) => {
     const imageUri = ImageUrl(imageBaseUrl, item.profile_path);
     return (
-      <TouchableOpacity
-        onPress={() => console.log(`${item.name}, id : ${item.id}`)}>
+      <TouchableOpacity onPress={() => handlePress(item.id)}>
         <View style={styles.personContainer}>
           <Image
             source={
@@ -29,11 +30,13 @@ export const CastRow = props => {
     );
   };
   return (
-    <FlatList
-      data={cast}
-      keyExtractor={item => item.id}
-      renderItem={renderItem}
-      horizontal={true}
-    />
+    <View>
+      <FlatList
+        data={cast}
+        keyExtractor={item => item.id}
+        renderItem={renderItem}
+        horizontal={true}
+      />
+    </View>
   );
 };
