@@ -4,7 +4,7 @@ import {ScrollView, View, Text} from 'react-native';
 
 import {PosterRow} from '../PosterRow';
 import {ButtonsRow} from '../ButtonsRow';
-import {DetailsRow} from '../DetailsRow.js/index.js';
+import {DetailsRow} from '../DetailsRow';
 import {CastRow} from '../CastRow';
 import {ImageUrl} from '../../Utilis/helperFunctions';
 import {styles} from './styles';
