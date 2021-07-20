@@ -12,6 +12,7 @@ const TOP_RATED = 'top_rated';
 const LATEST = 'latest';
 const API_KEY_QUERY = 'api_key=';
 const CREDITS_PATH = 'credits';
+const PERSON_PATH = 'person';
 export const generateUrl = (isMovie, type, pageNumber = 0) => {
   const url =
     TMDB_BASE_URL +
@@ -66,6 +67,21 @@ export const generateCreditsUrl = (isMovie, ID) => {
     ID +
     '/' +
     CREDITS_PATH +
+    '?' +
+    API_KEY_QUERY +
+    API_KEY
+  );
+};
+
+export const generatePersonUrl = personId => {
+  return (
+    TMDB_BASE_URL +
+    '/' +
+    API_VERSION +
+    '/' +
+    PERSON_PATH +
+    '/' +
+    personId +
     '?' +
     API_KEY_QUERY +
     API_KEY

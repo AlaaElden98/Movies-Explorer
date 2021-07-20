@@ -57,3 +57,7 @@ export const getGenresNames = val => {
   }
   return result;
 };
+
+export const ImageUrl = (imageBaseUrl, path) => {
+  return path != null ? imageBaseUrl + 'original' + path : 'NO_IMAGE';
+};

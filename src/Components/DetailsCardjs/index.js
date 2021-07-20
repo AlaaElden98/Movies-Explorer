@@ -5,6 +5,8 @@ import {ScrollView, View, Text} from 'react-native';
 import {PosterRow} from '../PosterRow';
 import {ButtonsRow} from '../ButtonsRow';
 import {DetailsRow} from '../DetailsRow.js/index.js';
+import {CastRow} from '../CastRow';
+import {ImageUrl} from '../../Utilis/helperFunctions';
 import {styles} from './styles';
 
 export const DetailsCard = props => {
@@ -25,17 +27,16 @@ export const DetailsCard = props => {
     backdrop_path,
     homepage, // could be null
     genres, // [id,name]
-    cast, // [name, profile_path]
+    cast, // [name, profile_path, id]
   } = props.details;
 
   const [showImage, setShowImage] = useState(false);
   const imageBaseUrl = props.imageBaseUrl;
 
-  const ImageUrl = path => {
-    return path != null ? imageBaseUrl + 'original' + path : 'NO_IMAGE';
-  };
-
-  const images = [{uri: ImageUrl(poster_path)}, {uri: ImageUrl(backdrop_path)}];
+  const images = [
+    {uri: ImageUrl(imageBaseUrl, poster_path)},
+    {uri: ImageUrl(imageBaseUrl, backdrop_path)},
+  ];
   const handleImage = () => {
     setShowImage(!showImage);
   };
@@ -45,7 +46,7 @@ export const DetailsCard = props => {
         images={images}
         onPress={handleImage}
         showImage={showImage}
-        backgroundImage={ImageUrl(backdrop_path)}
+        backgroundImage={ImageUrl(imageBaseUrl, backdrop_path)}
         title={title}
         tagline={tagline}
         rate={vote_average}
@@ -66,6 +67,7 @@ export const DetailsCard = props => {
           <Text style={styles.overviewBody}>{overview}</Text>
         </View>
       )}
+      <CastRow cast={cast} imageBaseUrl={imageBaseUrl} />
     </ScrollView>
   );
 };
