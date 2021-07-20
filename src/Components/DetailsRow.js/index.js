@@ -44,7 +44,7 @@ export const DetailsRow = props => {
     <View>
       <FlatList
         data={DATA}
-        keyExtractor={item => DATA[item]}
+        keyExtractor={item => item.title}
         renderItem={renderItem}
         horizontal={true}
       />
