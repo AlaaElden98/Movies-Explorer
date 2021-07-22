@@ -21,7 +21,9 @@ export const PosterRow = props => {
           <View style={styles.imageInfo}>
             <View>
               <Text style={styles.title}>{title}</Text>
-              {tagline && <Text style={styles.tagline}>{`"${tagline}"`}</Text>}
+              {tagline === '' || !tagline ? null : (
+                <Text style={styles.tagline}>{`"${tagline}"`}</Text>
+              )}
               <Text style={styles.tagline}>{` Rate    ${rate}/10`}</Text>
             </View>
           </View>
