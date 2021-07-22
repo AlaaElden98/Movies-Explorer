@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import {View, Text, Image} from 'react-native';
 
 import {styles} from './styles';
+import {reverseDate, getRateColor} from '../../Utilis/helperFunctions';
+import language from '../../Constants/language.json';
 
 export const Card = props => {
-  const {imageUri, title, overview, rate, date} = props;
+  const {imageUri, title, rate, date, column, original_language} = props;
   return (
-    <View style={styles.container}>
+    <View style={column ? styles.containerOnColumn : styles.container}>
       <Image
         source={
           imageUri == 'NO_IMAGE'
@@ -16,19 +18,29 @@ export const Card = props => {
                 uri: imageUri,
               }
         }
-        resizeMode="stretch"
+        resizeMode={column ? 'cover' : 'contain'}
         style={styles.image}
       />
-      <View style={styles.rightSideContainer}>
-        <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>
+      {column ? (
+        <Text ellipsizeMode="tail" style={styles.titleOnColumn}>
           {title}
         </Text>
-        <Text numberOfLines={8} ellipsizeMode="tail" style={styles.overview}>
-          {overview}
-        </Text>
-        <Text style={styles.rate}>{rate}</Text>
-        <Text style={styles.date}>{date}</Text>
-      </View>
+      ) : (
+        <View style={styles.rightSideContainer}>
+          <Text numberOfLines={3} ellipsizeMode="tail" style={styles.title}>
+            {title}
+          </Text>
+          <Text style={styles.date}>{language[original_language]}</Text>
+          {date && <Text style={styles.date}>{reverseDate(date)}</Text>}
+          <View
+            style={[
+              styles.rateContainer,
+              {backgroundColor: getRateColor(rate)},
+            ]}>
+            <Text style={styles.rate}>{rate == 0 ? 'N/A' : rate}</Text>
+          </View>
+        </View>
+      )}
     </View>
   );
 };

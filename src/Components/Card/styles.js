@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 
 import {
   responsiveFontSize,
+  responsiveHeight,
   responsiveWidth,
 } from '../../Utilis/helperFunctions';
 
@@ -9,25 +10,49 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    padding: 10,
-    margin: 8,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    borderWidth: 0,
+    padding: 15,
+  },
+  containerOnColumn: {
+    marginTop: 10,
+    padding: 25,
+    width: responsiveWidth(50),
+    height: responsiveHeight(40),
   },
   imageContainer: {},
   image: {
     width: responsiveWidth(30),
-    height: responsiveWidth(65),
-    borderRadius: 8,
+    height: responsiveHeight(25),
+    borderRadius: 15,
   },
+  imageOnColumn: {
+    width: responsiveWidth(40),
+    height: responsiveHeight(30),
+    borderRadius: 15,
+  },
+  titleOnColumn: {fontSize: responsiveFontSize(2.5), fontWeight: 'bold'},
   title: {
-    fontSize: responsiveFontSize(3),
+    fontSize: responsiveFontSize(2.5),
     fontWeight: 'bold',
-    textDecorationLine: 'underline',
   },
   overview: {fontSize: responsiveFontSize(2)},
-  rate: {},
-  date: {fontSize: responsiveFontSize(2), color: 'grey', fontStyle: 'italic'},
-  rightSideContainer: {flex: 1},
+  rate: {
+    fontSize: responsiveFontSize(2),
+    color: 'white',
+  },
+  rateContainer: {
+    backgroundColor: 'green',
+    width: responsiveFontSize(8),
+    alignItems: 'center',
+    borderRadius: 15,
+  },
+  date: {
+    fontSize: responsiveFontSize(2),
+    color: '#525252',
+    fontStyle: 'italic',
+  },
+  rightSideContainer: {
+    marginLeft: 20,
+    flex: 1,
+    justifyContent: 'space-around',
+  },
 });

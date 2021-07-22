@@ -67,3 +67,16 @@ export const CalculateAge = birthday => {
   const currentYear = new Date().getFullYear();
   return currentYear - year;
 };
+
+export const reverseDate = str => {
+  return str.split('-').reverse().join('-');
+};
+
+export const getRateColor = rate => {
+  const Strongpink = '#C70039';
+  const LightOrange = '#FFD580';
+  const LimeGreen = '#54c254';
+  if (rate == 0) return 'black';
+  const rateColor = rate < 5 ? Strongpink : rate < 7 ? LightOrange : LimeGreen;
+  return rateColor;
+};

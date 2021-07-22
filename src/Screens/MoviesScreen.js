@@ -1,9 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, FlatList, TouchableOpacity} from 'react-native';
+import {
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+  Text,
+  View,
+  StyleSheet,
+} from 'react-native';
 
 import {getDataAbout} from '../Api/getData';
 import {Card} from '../Components/Card';
 import {getImagesBaseUrl} from '../Api/getImagesBaseUrl';
+import {responsiveFontSize} from '../Utilis/helperFunctions';
 
 const MoviesScreen = ({navigation}) => {
   const [movies, setMovies] = useState();
@@ -42,11 +50,13 @@ const MoviesScreen = ({navigation}) => {
           overview={item.overview}
           rate={item.vote_average}
           date={item.release_date}
+          original_language={item.original_language}
           imageUri={
             item.poster_path != null
               ? imageBaseUrl + 'original' + item.poster_path
               : 'NO_IMAGE'
           }
+          column={false}
         />
       </TouchableOpacity>
     );
@@ -56,15 +66,33 @@ const MoviesScreen = ({navigation}) => {
   };
   return (
     <SafeAreaView>
+      <View style={styles.seperator} />
+      <View style={styles.header}>
+        <Text style={{fontSize: responsiveFontSize(3)}}>Most Popular</Text>
+      </View>
       <FlatList
         data={movies}
+        numColumns={0}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         onEndReachedThreshold={0.5}
         onEndReached={fetchNextPage}
+        style={{backgroundColor: 'white'}}
       />
     </SafeAreaView>
   );
 };
-
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+  },
+  header: {
+    padding: 15,
+    backgroundColor: 'white',
+  },
+  seperator: {
+    height: 0.5,
+    backgroundColor: 'grey',
+  },
+});
 export default MoviesScreen;
