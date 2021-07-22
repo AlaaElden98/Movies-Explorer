@@ -61,3 +61,9 @@ export const getGenresNames = val => {
 export const ImageUrl = (imageBaseUrl, path) => {
   return path != null ? imageBaseUrl + 'original' + path : 'NO_IMAGE';
 };
+
+export const CalculateAge = birthday => {
+  const year = birthday.substring(0, 4);
+  const currentYear = new Date().getFullYear();
+  return currentYear - year;
+};

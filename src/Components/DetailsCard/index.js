@@ -81,7 +81,13 @@ export const DetailsCard = props => {
           handleModal={id => handleModal(id)}
         />
       </ScrollView>
-      {modal && <PersonModal id={ids} onClosed={() => showModal(false)} />}
+      {modal && (
+        <PersonModal
+          id={ids}
+          onClosed={() => showModal(false)}
+          imageBaseUrl={imageBaseUrl}
+        />
+      )}
     </View>
   );
 };

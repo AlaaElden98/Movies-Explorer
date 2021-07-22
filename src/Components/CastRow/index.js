@@ -6,7 +6,6 @@ import {styles} from './styles';
 
 export const CastRow = props => {
   const {cast, imageBaseUrl, handleModal} = props;
-  //   cast = [name, profile_path, id]
   const handlePress = id => {
     handleModal(id);
   };
