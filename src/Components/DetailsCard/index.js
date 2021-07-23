@@ -9,6 +9,8 @@ import {CastRow} from '../CastRow';
 import {ImageUrl} from '../../Utilis/helperFunctions';
 import {PersonModal} from '../PersonModal';
 import {styles} from './styles';
+import {getDetails} from '../../Api/getDetails';
+import {useEffect} from 'react/cjs/react.development';
 
 export const DetailsCard = props => {
   const {
@@ -35,19 +37,24 @@ export const DetailsCard = props => {
     number_of_seasons,
   } = props.details;
   const imageBaseUrl = props.imageBaseUrl;
-  console.log(id);
   const [showImage, setShowImage] = useState(false);
   const [modal, showModal] = useState(false);
   const [personId, setPersonId] = useState();
-  const images = [
-    {uri: ImageUrl(imageBaseUrl, poster_path)},
-    {uri: ImageUrl(imageBaseUrl, backdrop_path)},
-  ];
-  const handleImage = () => {
-    setShowImage(!showImage);
-  };
+  const [images, setImages] = useState([]);
+
+  useEffect(async () => {
+    let backDrops = [{uri: ImageUrl(imageBaseUrl, poster_path)}];
+
+    const data = await getDetails(parent == 'movie' ? true : false, id, true);
+
+    for (let i = 0; i < data.backdrops.length; ++i) {
+      backDrops.push({
+        uri: ImageUrl(imageBaseUrl, data.backdrops[i].file_path),
+      });
+    }
+    setImages(backDrops);
+  }, []);
   const handleModal = personId => {
-    console.log(personId);
     showModal(true);
     setPersonId(personId);
   };
@@ -56,7 +63,8 @@ export const DetailsCard = props => {
       <ScrollView>
         <PosterRow
           images={images}
-          onPress={handleImage}
+          onPress={() => setShowImage(true)}
+          onClose={() => setShowImage(false)}
           showImage={showImage}
           backgroundImage={ImageUrl(imageBaseUrl, backdrop_path)}
           title={parent == 'movie' ? title : name}

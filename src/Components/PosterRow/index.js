@@ -6,8 +6,16 @@ import ImageView from 'react-native-image-viewing';
 import {styles} from './styles';
 
 export const PosterRow = props => {
-  const {images, showImage, onPress, backgroundImage, title, tagline, rate} =
-    props;
+  const {
+    images,
+    showImage,
+    onPress,
+    onClose,
+    backgroundImage,
+    title,
+    tagline,
+    rate,
+  } = props;
   return (
     <View>
       <TouchableOpacity
@@ -34,7 +42,7 @@ export const PosterRow = props => {
           images={images}
           imageIndex={0}
           visible={showImage}
-          onRequestClose={onPress}
+          onRequestClose={onClose}
         />
       ) : null}
     </View>
