@@ -9,7 +9,6 @@ const MOVIE_PATH = 'movie';
 const TV_PATH = 'tv';
 const POPULAR_PATH = 'popular';
 const TOP_RATED = 'top_rated';
-const LATEST = 'latest';
 const API_KEY_QUERY = 'api_key=';
 const CREDITS_PATH = 'credits';
 const PERSON_PATH = 'person';
@@ -21,7 +20,7 @@ export const generateUrl = (isMovie, type, pageNumber = 0) => {
     '/' +
     (isMovie ? MOVIE_PATH : TV_PATH) +
     '/' +
-    (type == 1 ? POPULAR_PATH : type == 2 ? TOP_RATED : LATEST) +
+    (type == 1 ? POPULAR_PATH : TOP_RATED) +
     '?' +
     API_KEY_QUERY +
     API_KEY;
