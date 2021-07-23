@@ -7,9 +7,9 @@ import {reverseDate, getRateColor} from '../../Utilis/helperFunctions';
 import language from '../../Constants/language.json';
 
 export const Card = props => {
-  const {imageUri, title, rate, date, column, original_language} = props;
+  const {imageUri, title, rate, date, original_language} = props;
   return (
-    <View style={column ? styles.containerOnColumn : styles.container}>
+    <View style={styles.container}>
       <Image
         source={
           imageUri == 'NO_IMAGE'
@@ -18,29 +18,21 @@ export const Card = props => {
                 uri: imageUri,
               }
         }
-        resizeMode={column ? 'cover' : 'contain'}
+        resizeMode="contain"
         style={styles.image}
       />
-      {column ? (
-        <Text ellipsizeMode="tail" style={styles.titleOnColumn}>
+
+      <View style={styles.rightSideContainer}>
+        <Text numberOfLines={3} ellipsizeMode="tail" style={styles.title}>
           {title}
         </Text>
-      ) : (
-        <View style={styles.rightSideContainer}>
-          <Text numberOfLines={3} ellipsizeMode="tail" style={styles.title}>
-            {title}
-          </Text>
-          <Text style={styles.date}>{language[original_language]}</Text>
-          {date && <Text style={styles.date}>{reverseDate(date)}</Text>}
-          <View
-            style={[
-              styles.rateContainer,
-              {backgroundColor: getRateColor(rate)},
-            ]}>
-            <Text style={styles.rate}>{rate == 0 ? 'N/A' : rate}</Text>
-          </View>
+        <Text style={styles.date}>{language[original_language]}</Text>
+        {date && <Text style={styles.date}>{reverseDate(date)}</Text>}
+        <View
+          style={[styles.rateContainer, {backgroundColor: getRateColor(rate)}]}>
+          <Text style={styles.rate}>{rate == 0 ? 'N/A' : rate}</Text>
         </View>
-      )}
+      </View>
     </View>
   );
 };

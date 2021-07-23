@@ -12,24 +12,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 15,
   },
-  containerOnColumn: {
-    marginTop: 10,
-    padding: 25,
-    width: responsiveWidth(50),
-    height: responsiveHeight(40),
-  },
   imageContainer: {},
   image: {
     width: responsiveWidth(30),
     height: responsiveHeight(25),
     borderRadius: 15,
   },
-  imageOnColumn: {
-    width: responsiveWidth(40),
-    height: responsiveHeight(30),
-    borderRadius: 15,
-  },
-  titleOnColumn: {fontSize: responsiveFontSize(2.5), fontWeight: 'bold'},
   title: {
     fontSize: responsiveFontSize(2.5),
     fontWeight: 'bold',

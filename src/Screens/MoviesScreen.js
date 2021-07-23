@@ -56,7 +56,6 @@ const MoviesScreen = ({navigation}) => {
               ? imageBaseUrl + 'original' + item.poster_path
               : 'NO_IMAGE'
           }
-          column={false}
         />
       </TouchableOpacity>
     );
