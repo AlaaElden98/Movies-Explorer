@@ -1,11 +1,24 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+
+import {List} from '../Components/List';
+
+const Tab = createMaterialTopTabNavigator();
 
 const TvShowsScreen = () => {
   return (
-    <View>
-      <Text>TvShowesScreen</Text>
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Popular"
+        component={List}
+        initialParams={{isMovie: false, type: 1}}
+      />
+      <Tab.Screen
+        name="Top Rated"
+        component={List}
+        initialParams={{isMovie: false, type: 2}}
+      />
+    </Tab.Navigator>
   );
 };
 

@@ -34,16 +34,16 @@ export const List = ({navigation, route}) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Details', {
-            parent: 'movie',
+            parent: isMovie ? 'movie' : 'tv',
             id: item.id,
             imageBaseUrl: imageBaseUrl,
           });
         }}>
         <Card
-          title={item.title}
+          title={isMovie ? item.title : item.name}
           overview={item.overview}
           rate={item.vote_average}
-          date={item.release_date}
+          date={isMovie ? item.release_date : item.first_air_date}
           original_language={item.original_language}
           imageUri={
             item.poster_path != null

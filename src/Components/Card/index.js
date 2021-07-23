@@ -27,7 +27,9 @@ export const Card = props => {
           {title}
         </Text>
         <Text style={styles.date}>{language[original_language]}</Text>
-        {date && <Text style={styles.date}>{reverseDate(date)}</Text>}
+        {date && date != '' ? (
+          <Text style={styles.date}>{reverseDate(date)}</Text>
+        ) : null}
         <View
           style={[styles.rateContainer, {backgroundColor: getRateColor(rate)}]}>
           <Text style={styles.rate}>{rate == 0 ? 'N/A' : rate}</Text>

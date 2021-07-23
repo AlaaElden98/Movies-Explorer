@@ -29,6 +29,10 @@ export const DetailsCard = props => {
     homepage, // could be null
     genres, // [id,name]
     cast, // [name, profile_path, id]
+    name,
+    number_of_episodes,
+    first_air_date,
+    number_of_seasons,
   } = props.details;
   const imageBaseUrl = props.imageBaseUrl;
 
@@ -55,7 +59,7 @@ export const DetailsCard = props => {
           onPress={handleImage}
           showImage={showImage}
           backgroundImage={ImageUrl(imageBaseUrl, backdrop_path)}
-          title={title}
+          title={parent == 'movie' ? title : name}
           tagline={tagline}
           rate={vote_average}
         />
@@ -64,10 +68,12 @@ export const DetailsCard = props => {
           runtime={runtime}
           status={status}
           revenue={revenue}
-          release_date={release_date}
+          release_date={parent == 'movie' ? release_date : first_air_date}
           budget={budget}
           original_language={original_language}
           genres={genres}
+          number_of_episodes={number_of_episodes}
+          number_of_seasons={number_of_seasons}
         />
         {overview && (
           <View style={styles.overvieContainer}>

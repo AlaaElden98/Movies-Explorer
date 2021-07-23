@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-
+import PropTypes from 'prop-types';
 import {
   convertMinutesToReadableTime,
   converToDollars,
@@ -18,20 +18,36 @@ export const DetailsRow = props => {
     budget,
     original_language,
     genres,
+    number_of_episodes,
+    number_of_seasons,
   } = props;
 
   const DATA = [
-    {
-      title: 'Duration',
-      body: runtime ? convertMinutesToReadableTime(runtime) : '-',
-    },
+    runtime
+      ? {
+          title: 'Duration',
+          body: runtime ? convertMinutesToReadableTime(runtime) : '-',
+        }
+      : {title: 'Seasons', body: number_of_seasons},
+
+    number_of_episodes ? {title: 'Episodes', body: number_of_episodes} : {},
     {title: 'Genres', body: getGenresNames(genres)},
     {title: 'Language', body: language[original_language]},
     {title: 'Status', body: status},
-    {title: 'Date', body: release_date},
-    {title: 'Budget', body: budget == 0 ? '-' : converToDollars(budget)},
-    {title: 'Revenue', body: revenue == 0 ? '-' : converToDollars(revenue)},
+    {
+      title: 'Date',
+      body: release_date && release_date != '' ? release_date : '-',
+    },
+    {
+      title: 'Budget',
+      body: budget == 0 || !budget ? '-' : converToDollars(budget),
+    },
+    {
+      title: 'Revenue',
+      body: revenue == 0 || !revenue ? '-' : converToDollars(revenue),
+    },
   ];
+
   const renderItem = ({item}) => {
     return (
       <View style={styles.container}>
@@ -50,4 +66,11 @@ export const DetailsRow = props => {
       />
     </View>
   );
+};
+
+DetailsRow.propTypes = {
+  runtime: PropTypes.number,
+  release_date: PropTypes.string,
+  original_language: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
 };
