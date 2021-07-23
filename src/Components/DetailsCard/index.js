@@ -35,10 +35,10 @@ export const DetailsCard = props => {
     number_of_seasons,
   } = props.details;
   const imageBaseUrl = props.imageBaseUrl;
-
+  console.log(id);
   const [showImage, setShowImage] = useState(false);
   const [modal, showModal] = useState(false);
-  const [ids, setId] = useState();
+  const [personId, setPersonId] = useState();
   const images = [
     {uri: ImageUrl(imageBaseUrl, poster_path)},
     {uri: ImageUrl(imageBaseUrl, backdrop_path)},
@@ -46,10 +46,10 @@ export const DetailsCard = props => {
   const handleImage = () => {
     setShowImage(!showImage);
   };
-  const handleModal = ids => {
-    console.log(ids);
+  const handleModal = personId => {
+    console.log(personId);
     showModal(true);
-    setId(ids);
+    setPersonId(personId);
   };
   return (
     <View style={styles.container}>
@@ -89,7 +89,7 @@ export const DetailsCard = props => {
       </ScrollView>
       {modal && (
         <PersonModal
-          id={ids}
+          id={personId}
           onClosed={() => showModal(false)}
           imageBaseUrl={imageBaseUrl}
         />
