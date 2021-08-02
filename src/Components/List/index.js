@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import {getDataAbout} from '../../Api/getData';
 import {Card} from '../../Components/Card';
 import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
+import {CustomActivityIndicator} from '../CustomActivityIndicator';
+import {TheEnd} from '../TheEnd';
 
 export const List = ({navigation, route}) => {
   const {isMovie, type} = route.params;
@@ -61,12 +63,12 @@ export const List = ({navigation, route}) => {
     <View>
       <FlatList
         data={movies}
-        numColumns={0}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         onEndReachedThreshold={0.5}
         onEndReached={fetchNextPage}
         style={{backgroundColor: 'white'}}
+        ListFooterComponent={theEnd ? TheEnd : CustomActivityIndicator}
       />
     </View>
   );
