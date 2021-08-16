@@ -59,6 +59,7 @@ export const DetailsCard = props => {
     showModal(true);
     setPersonId(personId);
   };
+  console.log(overview);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -86,7 +87,7 @@ export const DetailsCard = props => {
           number_of_episodes={number_of_episodes}
           number_of_seasons={number_of_seasons}
         />
-        {overview && (
+        {(overview || overview != '') && (
           <View style={styles.overvieContainer}>
             <Text style={styles.overviewTitle}>Overview</Text>
             <Text style={styles.overviewBody}>{overview}</Text>
