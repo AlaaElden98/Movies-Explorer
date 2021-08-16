@@ -36,6 +36,7 @@ export const DetailsCard = props => {
     first_air_date,
     number_of_seasons,
   } = props.details;
+  console.log(props.details);
   const imageBaseUrl = props.imageBaseUrl;
   const [showImage, setShowImage] = useState(false);
   const [modal, showModal] = useState(false);
@@ -66,7 +67,9 @@ export const DetailsCard = props => {
           onPress={() => setShowImage(true)}
           onClose={() => setShowImage(false)}
           showImage={showImage}
-          backgroundImage={ImageUrl(imageBaseUrl, backdrop_path)}
+          backgroundImage={
+            backdrop_path ? ImageUrl(imageBaseUrl, backdrop_path) : 'NO_IMAGE'
+          }
           title={parent == 'movie' ? title : name}
           tagline={tagline}
           rate={vote_average}

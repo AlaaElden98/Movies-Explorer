@@ -23,8 +23,14 @@ export const PosterRow = props => {
         activeOpacity={0.8}
         onPress={onPress}>
         <ImageBackground
-          source={{uri: backgroundImage}}
-          resizeMode="cover"
+          source={
+            backgroundImage == 'NO_IMAGE'
+              ? require('../../assests/NO_IMAGE.jpg')
+              : {
+                  uri: backgroundImage,
+                }
+          }
+          resizeMode={backgroundImage == 'NO_IMAGE' ? 'contain' : 'cover'}
           style={styles.image}>
           <View style={styles.imageInfo}>
             <View>
