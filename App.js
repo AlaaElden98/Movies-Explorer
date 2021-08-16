@@ -3,6 +3,8 @@ import {LogBox} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Toast from 'react-native-toast-message';
+import store from './src/redux/store';
+import {Provider} from 'react-redux';
 
 import {ButtomTabs} from './src/Components/ButtomTabs';
 
@@ -11,10 +13,12 @@ LogBox.ignoreLogs(['Reanimated 2']);
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <ButtomTabs />
-      <Toast ref={ref => Toast.setRef(ref)} />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <ButtomTabs />
+        <Toast ref={ref => Toast.setRef(ref)} />
+      </NavigationContainer>
+    </Provider>
   );
 };
 

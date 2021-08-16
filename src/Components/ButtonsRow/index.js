@@ -8,24 +8,40 @@ import {
   Linking,
 } from 'react-native';
 import Toast from 'react-native-toast-message';
-import {responsiveFontSize} from '../../Utilis/helperFunctions';
+import {useDispatch, useSelector} from 'react-redux';
 
+import {addMovie, removeMovie, addTv, removeTv} from '../../redux/myListSlice';
+import {responsiveFontSize} from '../../Utilis/helperFunctions';
 import {Touchable} from '../Touchable';
 import {styles} from './styles';
 
 export const ButtonsRow = props => {
   const {homepage, title, id, parent} = props;
-  const [inMyList, setInMyList] = useState(false);
+  const dispatch = useDispatch();
+
+  const myList = useSelector(state =>
+    parent == 'movie' ? state.myList.moviesIds : state.myList.tvIds,
+  );
+
+  const [inMyList, setInMyList] = useState(
+    myList.indexOf(id) > -1 ? true : false,
+  );
+
   const MyListIconName = inMyList ? 'check' : 'plus';
 
   const handleAddToList = () => {
+    inMyList
+      ? dispatch(parent == 'movie' ? removeMovie(id) : removeTv(id))
+      : dispatch(parent == 'movie' ? addMovie(id) : addTv(id));
+
+    setInMyList(!inMyList);
+
     const message = inMyList ? 'Removed from My list' : 'Added to My list';
     Platform.OS == 'android'
       ? ToastAndroid.show(message, ToastAndroid.SHORT)
       : Toast.show({
           text1: message,
         });
-    setInMyList(!inMyList);
   };
 
   const handleShare = async () => {

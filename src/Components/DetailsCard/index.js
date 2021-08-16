@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {ScrollView, View, Text} from 'react-native';
 
@@ -10,7 +10,6 @@ import {ImageUrl} from '../../Utilis/helperFunctions';
 import {PersonModal} from '../PersonModal';
 import {styles} from './styles';
 import {getDetails} from '../../Api/getDetails';
-import {useEffect} from 'react/cjs/react.development';
 
 export const DetailsCard = props => {
   const {
@@ -36,7 +35,6 @@ export const DetailsCard = props => {
     first_air_date,
     number_of_seasons,
   } = props.details;
-  console.log(props.details);
   const imageBaseUrl = props.imageBaseUrl;
   const [showImage, setShowImage] = useState(false);
   const [modal, showModal] = useState(false);
@@ -59,7 +57,6 @@ export const DetailsCard = props => {
     showModal(true);
     setPersonId(personId);
   };
-  console.log(overview);
   return (
     <View style={styles.container}>
       <ScrollView>
