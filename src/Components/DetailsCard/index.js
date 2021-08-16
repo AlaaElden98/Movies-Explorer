@@ -44,7 +44,7 @@ export const DetailsCard = props => {
   const [images, setImages] = useState([]);
 
   useEffect(async () => {
-    let backDrops = [{uri: ImageUrl(imageBaseUrl, poster_path)}];
+    let backDrops = [];
 
     const data = await getDetails(parent == 'movie' ? true : false, id, true);
 
