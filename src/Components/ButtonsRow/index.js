@@ -10,7 +10,7 @@ import {
 import Toast from 'react-native-toast-message';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {addMovie, removeMovie, addTv, removeTv} from '../../redux/myListSlice';
+import {addItem, removeItem} from '../../redux/myListSlice';
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
 import {Touchable} from '../Touchable';
 import {styles} from './styles';
@@ -19,9 +19,7 @@ export const ButtonsRow = props => {
   const {homepage, title, id, parent, poster_path} = props;
   const dispatch = useDispatch();
 
-  const myList = useSelector(state =>
-    parent == 'movie' ? state.myList.movies : state.myList.tv,
-  );
+  const myList = useSelector(state => state.myList.items);
 
   const itemInList = myList.find(itemInList => itemInList.id === id);
 
@@ -31,15 +29,9 @@ export const ButtonsRow = props => {
 
   const handleAddToList = () => {
     inMyList
-      ? dispatch(parent == 'movie' ? removeMovie(id) : removeTv(id))
-      : dispatch(
-          parent == 'movie'
-            ? addMovie({id: id, poster_path: poster_path})
-            : addTv({id: id, poster_path: poster_path}),
-        );
-
+      ? dispatch(removeItem(id))
+      : dispatch(addItem({id: id, poster_path: poster_path, parent: parent}));
     setInMyList(!inMyList);
-
     const message = inMyList ? 'Removed from My list' : 'Added to My list';
     Platform.OS == 'android'
       ? ToastAndroid.show(message, ToastAndroid.SHORT)

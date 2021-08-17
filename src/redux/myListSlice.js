@@ -1,31 +1,25 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  movies: [],
-  tv: [],
+  items: [],
 };
 
 const myListSlice = createSlice({
   name: 'myList',
   initialState,
   reducers: {
-    addMovie: (state, action) => {
-      state.movies.push(action.payload);
+    addItem: (state, action) => {
+      state.items.push(action.payload);
+      console.log(state);
     },
-    removeMovie: (state, action) => {
-      let index = state.movies.findIndex(item => item.id === action.payload);
-      state.movies.splice(index, 1);
-    },
-    addTv: (state, action) => {
-      state.tv.push(action.payload);
-    },
-    removeTv: (state, action) => {
-      let index = state.tv.findIndex(item => item.id === action.payload);
-      state.tv.splice(index, 1);
+    removeItem: (state, action) => {
+      let index = state.items.findIndex(item => item.id === action.payload);
+      state.items.splice(index, 1);
+      console.log(state);
     },
   },
 });
 
-export const {addMovie, removeMovie, addTv, removeTv} = myListSlice.actions;
+export const {addItem, removeItem} = myListSlice.actions;
 
 export default myListSlice.reducer;
