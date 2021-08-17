@@ -10,12 +10,10 @@ const myListSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       state.items.push(action.payload);
-      console.log(state);
     },
     removeItem: (state, action) => {
       let index = state.items.findIndex(item => item.id === action.payload);
       state.items.splice(index, 1);
-      console.log(state);
     },
   },
 });
