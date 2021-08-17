@@ -1,8 +1,8 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  moviesIds: [],
-  tvIds: [],
+  movies: [],
+  tv: [],
 };
 
 const myListSlice = createSlice({
@@ -10,18 +10,18 @@ const myListSlice = createSlice({
   initialState,
   reducers: {
     addMovie: (state, action) => {
-      state.moviesIds.push(action.payload);
+      state.movies.push(action.payload);
     },
     removeMovie: (state, action) => {
-      let index = state.moviesIds.indexOf(action.payload);
-      state.moviesIds.splice(index, 1);
+      let index = state.movies.findIndex(item => item.id === action.payload);
+      state.movies.splice(index, 1);
     },
     addTv: (state, action) => {
-      state.tvIds.push(action.payload);
+      state.tv.push(action.payload);
     },
     removeTv: (state, action) => {
-      let index = state.tvIds.indexOf(action.payload);
-      state.tvIds.splice(index, 1);
+      let index = state.tv.findIndex(item => item.id === action.payload);
+      state.tv.splice(index, 1);
     },
   },
 });

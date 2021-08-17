@@ -72,7 +72,13 @@ export const DetailsCard = props => {
           tagline={tagline}
           rate={vote_average}
         />
-        <ButtonsRow homepage={homepage} title={title} id={id} parent={parent} />
+        <ButtonsRow
+          homepage={homepage}
+          title={title}
+          id={id}
+          parent={parent}
+          poster_path={poster_path}
+        />
         <DetailsRow
           runtime={runtime}
           status={status}

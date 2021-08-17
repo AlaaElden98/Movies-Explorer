@@ -16,23 +16,27 @@ import {Touchable} from '../Touchable';
 import {styles} from './styles';
 
 export const ButtonsRow = props => {
-  const {homepage, title, id, parent} = props;
+  const {homepage, title, id, parent, poster_path} = props;
   const dispatch = useDispatch();
 
   const myList = useSelector(state =>
-    parent == 'movie' ? state.myList.moviesIds : state.myList.tvIds,
+    parent == 'movie' ? state.myList.movies : state.myList.tv,
   );
 
-  const [inMyList, setInMyList] = useState(
-    myList.indexOf(id) > -1 ? true : false,
-  );
+  const itemInList = myList.find(itemInList => itemInList.id === id);
+
+  const [inMyList, setInMyList] = useState(itemInList ? true : false);
 
   const MyListIconName = inMyList ? 'check' : 'plus';
 
   const handleAddToList = () => {
     inMyList
       ? dispatch(parent == 'movie' ? removeMovie(id) : removeTv(id))
-      : dispatch(parent == 'movie' ? addMovie(id) : addTv(id));
+      : dispatch(
+          parent == 'movie'
+            ? addMovie({id: id, poster_path: poster_path})
+            : addTv({id: id, poster_path: poster_path}),
+        );
 
     setInMyList(!inMyList);
 
