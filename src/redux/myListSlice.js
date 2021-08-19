@@ -1,8 +1,18 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+
+import {storeData, getData} from '../AsyncStorage/asyncStorage';
 
 const initialState = {
   items: [],
 };
+
+export const getListFromAsyncStorage = createAsyncThunk(
+  'myList/getListFromAsyncStorage',
+  async () => {
+    const data = await getData('myList');
+    return data != null ? data : initialState;
+  },
+);
 
 const myListSlice = createSlice({
   name: 'myList',
@@ -10,11 +20,18 @@ const myListSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       state.items.push(action.payload);
+      storeData('myList', state.items);
     },
     removeItem: (state, action) => {
       let index = state.items.findIndex(item => item.id === action.payload);
       state.items.splice(index, 1);
+      storeData('myList', state.items);
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(getListFromAsyncStorage.fulfilled, (state, action) => {
+      state.items = action.payload;
+    });
   },
 });
 

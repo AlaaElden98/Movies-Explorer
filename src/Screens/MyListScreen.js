@@ -1,18 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, FlatList, Image, StyleSheet} from 'react-native';
-import {useSelector} from 'react-redux';
+import {View, FlatList, Image, StyleSheet} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {getImagesBaseUrl} from '../Api/getImagesBaseUrl';
 import {responsiveHeight, responsiveWidth} from '../Utilis/helperFunctions';
+import {getListFromAsyncStorage} from '../redux/myListSlice';
 
 const MyListScreen = () => {
-  const DATA = useSelector(state => state.myList.items);
+  const dispatch = useDispatch();
+
+  const getMyList = () => {
+    dispatch(getListFromAsyncStorage());
+  };
+
   const [imageBaseUrl, setImageBaseUrl] = useState();
 
   useEffect(async () => {
     const uri = await getImagesBaseUrl();
     setImageBaseUrl(uri);
   }, []);
+  useEffect(() => {
+    getMyList();
+  }, []);
+
+  const DATA = useSelector(state => state.myList.items);
 
   const renderItem = ({item}) => (
     <Image

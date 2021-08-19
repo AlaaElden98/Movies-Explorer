@@ -1,7 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit';
+
 import myListReducer from './myListSlice';
 
-export default configureStore({
+export default store = configureStore({
   reducer: {
     myList: myListReducer,
   },
