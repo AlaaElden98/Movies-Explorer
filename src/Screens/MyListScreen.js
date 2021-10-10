@@ -1,12 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {View, FlatList, Image, StyleSheet} from 'react-native';
+import {
+  View,
+  FlatList,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
 import {getImagesBaseUrl} from '../Api/getImagesBaseUrl';
 import {responsiveHeight, responsiveWidth} from '../Utilis/helperFunctions';
 import {getListFromAsyncStorage} from '../redux/myListSlice';
 
-const MyListScreen = () => {
+const MyListScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
 
   const getMyList = () => {
@@ -26,17 +32,26 @@ const MyListScreen = () => {
   const DATA = useSelector(state => state.myList.items);
 
   const renderItem = ({item}) => (
-    <Image
-      source={
-        !item.poster_path
-          ? require('../assests/NO_IMAGE.jpg')
-          : {
-              uri: imageBaseUrl + 'original' + item.poster_path,
-            }
-      }
-      resizeMode="cover"
-      style={styles.image}
-    />
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('Details', {
+          parent: item.parent,
+          id: item.id,
+          imageBaseUrl: imageBaseUrl,
+        });
+      }}>
+      <Image
+        source={
+          !item.poster_path
+            ? require('../assests/NO_IMAGE.jpg')
+            : {
+                uri: imageBaseUrl + 'original' + item.poster_path,
+              }
+        }
+        resizeMode="cover"
+        style={styles.image}
+      />
+    </TouchableOpacity>
   );
   return (
     <View style={{flex: 1, margin: 10}}>
