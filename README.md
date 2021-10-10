@@ -1,6 +1,6 @@
 ## Movies Explorer
 
-It's and app that shows a list of movies and tv shows from TMDB, build with react native.
+It's an app that shows a list of movies and tv shows from [TMDB](https://www.themoviedb.org/documentation/api), build with react native.
 The work is in progress.
 
 ### The user should
@@ -17,7 +17,7 @@ The work is in progress.
 
 - [ ] Test the app componants and functions
 - [ ] Take care of a11y
-- [ ] Add instabug SDK
+- [ ] Add [instabug](https://docs.instabug.com/docs/react-native-integration) SDK
 - [ ] Handle requests error
 - [ ] Publish to the Play store and App store
 - [ ] Update README
