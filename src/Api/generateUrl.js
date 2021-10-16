@@ -9,10 +9,16 @@ const MOVIE_PATH = 'movie';
 const TV_PATH = 'tv';
 const POPULAR_PATH = 'popular';
 const TOP_RATED = 'top_rated';
+const UPCOMING = 'upcoming';
 const API_KEY_QUERY = 'api_key=';
 const CREDITS_PATH = 'credits';
 const PERSON_PATH = 'person';
 const IMAGES_PATH = 'images';
+/*
+ * @param {boolean} isMovie - the path we want.
+ * @param {number} type - 1 for Popular, 2 for top rated and 3 for upcoming(IF isMovie is true).
+ * @param {number} pageNumber .
+ */
 export const generateUrl = (isMovie, type, pageNumber = 0) => {
   const url =
     TMDB_BASE_URL +
@@ -21,7 +27,7 @@ export const generateUrl = (isMovie, type, pageNumber = 0) => {
     '/' +
     (isMovie ? MOVIE_PATH : TV_PATH) +
     '/' +
-    (type == 1 ? POPULAR_PATH : TOP_RATED) +
+    (type == 1 ? POPULAR_PATH : type == 2 ? TOP_RATED : UPCOMING) +
     '?' +
     API_KEY_QUERY +
     API_KEY;

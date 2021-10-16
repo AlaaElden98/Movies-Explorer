@@ -15,9 +15,9 @@ const MoviesScreen = () => {
         initialParams={{isMovie: true, type: 1}}
       />
       <Tab.Screen
-        name="Top Rated"
+        name="Upcoming"
         component={List}
-        initialParams={{isMovie: true, type: 2}}
+        initialParams={{isMovie: true, type: 3}}
       />
     </Tab.Navigator>
   );
