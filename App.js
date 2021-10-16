@@ -10,6 +10,7 @@ import {ButtomTabs} from './src/Components/ButtomTabs';
 
 const Stack = createStackNavigator();
 LogBox.ignoreLogs(['Reanimated 2']);
+LogBox.ignoreLogs(['Encountered two children']);
 
 const App = () => {
   return (
