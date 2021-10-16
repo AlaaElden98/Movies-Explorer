@@ -12,7 +12,7 @@ import {
 import {responsiveFontSize, responsiveWidth} from '../Utilis/helperFunctions';
 import {
   MoviesStackScreen,
-  RandomStackScreen,
+  SearchStackScreen,
   TvShowsStackScreen,
   MyListStackScreen,
 } from '../NavigationStacks/index';
@@ -56,13 +56,13 @@ export const ButtomTabs = () => {
         }}
       />
       <Tab.Screen
-        name="Random"
-        component={RandomStackScreen}
+        name="Search"
+        component={SearchStackScreen}
         options={{
-          title: 'Random',
+          title: 'Search',
           tabBarIcon: () => (
             <IoniconsIcon
-              name="shuffle"
+              name="search"
               size={responsiveWidth(BUTTOM_TABS_ICONS_SIZE)}
             />
           ),

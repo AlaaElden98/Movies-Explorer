@@ -1,12 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
-const RandomScreen = () => {
+const SearchScreen = () => {
   return (
     <View>
-      <Text>Random Screen</Text>
+      <Text>Search Screen</Text>
     </View>
   );
 };
 
-export default RandomScreen;
+export default SearchScreen;
