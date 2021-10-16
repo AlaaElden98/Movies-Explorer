@@ -8,8 +8,7 @@ The work is in progress.
 - [x] See a list of (popular - top reated) Movies
 - [x] See a list of (popular - top reated) Tv shows
 - [x] See the full details of a specific movie/Tvshow
-- [x] Add movie/Tvshow to watch list
-- [ ] Get a random movie/Tvshow similiar to his taste 
+- [x] Add movie/Tvshow to watch list  
 - [ ] Trigger dark mode
 - [ ] Search for a specific movie/Tv show
 
@@ -28,8 +27,8 @@ The work is in progress.
 
 ### About the app
 
-The app should contain four main tabs :- Movies, Tv shows, Random, and My list.
+The app should contain four main tabs :- Movies, Tv shows, Search, and My list.
 
 * The Movies and Tv shows tabs each of them includes two tabs (popular - top rated).
-* Random tab show a movie or a tv show similiar to the items in user's list.
+* Search tab should have a search bar and a list of genres.
 * My list tab contain the movies and tv shows the user added.
