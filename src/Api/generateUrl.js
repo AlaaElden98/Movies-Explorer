@@ -110,3 +110,20 @@ export const generateImagesUrl = (isMovie, ID) => {
     API_KEY
   );
 };
+
+export const generateSearchUrl = (query, page = 1) => {
+  return (
+    TMDB_BASE_URL +
+    '/' +
+    API_VERSION +
+    '/' +
+    'search/' +
+    'multi?' +
+    API_KEY_QUERY +
+    API_KEY +
+    '&query=' +
+    query +
+    '&page=' +
+    page
+  );
+};
