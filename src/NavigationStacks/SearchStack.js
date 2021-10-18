@@ -9,7 +9,11 @@ const SearchStack = createStackNavigator();
 export function SearchStackScreen() {
   return (
     <SearchStack.Navigator>
-      <SearchStack.Screen name="Search" component={SearchScreen} />
+      <SearchStack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{headerShown: false}}
+      />
       <SearchStack.Screen name="Details" component={DetailsScreen} />
     </SearchStack.Navigator>
   );
