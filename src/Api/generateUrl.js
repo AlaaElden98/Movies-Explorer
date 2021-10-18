@@ -19,7 +19,7 @@ const IMAGES_PATH = 'images';
  * @param {number} type - 1 for Popular, 2 for top rated and 3 for upcoming(IF isMovie is true).
  * @param {number} pageNumber .
  */
-export const generateUrl = (isMovie, type, pageNumber = 0) => {
+export const generateGetDataUrl = (isMovie, type, pageNumber = 0) => {
   const url =
     TMDB_BASE_URL +
     '/' +
