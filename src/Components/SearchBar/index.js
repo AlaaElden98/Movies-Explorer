@@ -1,11 +1,34 @@
 import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {View, SafeAreaView, TextInput} from 'react-native';
+import Toast from 'react-native-toast-message';
+import {View, SafeAreaView, TextInput, ToastAndroid} from 'react-native';
+import {useDispatch} from 'react-redux';
 
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
+import {getSearchResults} from '../../Api/getSearchResults';
+import {addResults, clearResults} from '../../redux/searchResultsSlice';
 import {styles} from './styles';
+
+const HandleEmptySearch = () => {
+  Platform.OS == 'android'
+    ? ToastAndroid.show('Empty search', ToastAndroid.SHORT)
+    : Toast.show({
+        text1: 'Empty search',
+      });
+};
 export const SearchBar = () => {
   const [text, onChangeText] = useState('');
+  const dispatch = useDispatch();
+
+  const updateSearchState = async () => {
+    const data = await getSearchResults(text, 1);
+    const searchResults = data.results;
+    console.log(searchResults);
+    searchResults.length > 0
+      ? dispatch(addResults(searchResults))
+      : dispatch(clearResults());
+  };
+
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.searchBarContainer}>
@@ -13,7 +36,7 @@ export const SearchBar = () => {
           name="search"
           size={responsiveFontSize(3)}
           color="grey"
-          onPress={() => console.log(`Start Searching on ${text}`)}
+          onPress={() => (text ? updateSearchState() : HandleEmptySearch())}
         />
         <TextInput
           style={styles.searchBar}
@@ -21,7 +44,9 @@ export const SearchBar = () => {
           value={text}
           placeholder="Search for movies, tv shows, or actors"
           returnKeyType="search"
-          onSubmitEditing={() => console.log('Start Searching')}
+          onSubmitEditing={() =>
+            text ? updateSearchState() : HandleEmptySearch()
+          }
         />
         {text != '' && (
           <Ionicons
