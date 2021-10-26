@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 import {responsiveWidth, responsiveHeight} from '../../Utilis/helperFunctions';
 
 export const styles = StyleSheet.create({
-  screen: {backgroundColor: 'white', flex: 1},
   searchBar: {
     height: responsiveHeight(8),
     width: responsiveWidth(70),
