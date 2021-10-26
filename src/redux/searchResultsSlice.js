@@ -3,6 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
   results: [],
   query: '',
+  totalPages: 0,
 };
 
 const searchResultsSlice = createSlice({
@@ -22,10 +23,18 @@ const searchResultsSlice = createSlice({
       state.query = action.payload;
       console.log(state.query);
     },
+    setTotalPage: (state, action) => {
+      state.totalPages = action.payload;
+    },
   },
 });
 
-export const {addResults, pushToCurrentResults, clearResults, updateQuery} =
-  searchResultsSlice.actions;
+export const {
+  addResults,
+  pushToCurrentResults,
+  clearResults,
+  updateQuery,
+  setTotalPage,
+} = searchResultsSlice.actions;
 
 export default searchResultsSlice.reducer;
