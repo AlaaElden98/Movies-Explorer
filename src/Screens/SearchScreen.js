@@ -1,12 +1,15 @@
 import React from 'react';
+import {StyleSheet, View} from 'react-native';
 
-import {SafeAreaView, StyleSheet} from 'react-native';
 import {SearchBar} from '../Components/SearchBar';
+import {SearchList} from '../Components/SearchList';
+
 const SearchScreen = () => {
   return (
-    <SafeAreaView style={styles.screen}>
+    <View style={styles.screen}>
       <SearchBar />
-    </SafeAreaView>
+      <SearchList />
+    </View>
   );
 };
 
