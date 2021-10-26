@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Toast from 'react-native-toast-message';
 import {View, TextInput, ToastAndroid} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
 import {getSearchResults} from '../../Api/getSearchResults';
@@ -17,14 +17,16 @@ import {styles} from './styles';
 export const SearchBar = () => {
   const [text, onChangeText] = useState('');
   const dispatch = useDispatch();
+  const currentQuery = useSelector(state => state.searchResults.query);
 
   const updateSearchState = async () => {
+    if (currentQuery === text) return;
     const data = await getSearchResults(text, 1);
     const searchResults = data.results;
     searchResults.length > 0
       ? dispatch(addResults(searchResults))
       : dispatch(clearResults());
-    dispatch(setTotalPage(date.total_pages));
+    dispatch(setTotalPage(data.total_pages));
   };
   const HandleEmptySearch = () => {
     Platform.OS == 'android'
