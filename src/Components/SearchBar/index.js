@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Toast from 'react-native-toast-message';
-import {View, SafeAreaView, TextInput, ToastAndroid} from 'react-native';
+import {View, TextInput, ToastAndroid} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
@@ -10,6 +10,7 @@ import {
   addResults,
   clearResults,
   updateQuery,
+  setTotalPage,
 } from '../../redux/searchResultsSlice';
 import {styles} from './styles';
 
@@ -23,6 +24,7 @@ export const SearchBar = () => {
     searchResults.length > 0
       ? dispatch(addResults(searchResults))
       : dispatch(clearResults());
+    dispatch(setTotalPage(date.total_pages));
   };
   const HandleEmptySearch = () => {
     Platform.OS == 'android'
