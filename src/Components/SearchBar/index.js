@@ -6,7 +6,11 @@ import {useDispatch} from 'react-redux';
 
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
 import {getSearchResults} from '../../Api/getSearchResults';
-import {addResults, clearResults} from '../../redux/searchResultsSlice';
+import {
+  addResults,
+  clearResults,
+  updateQuery,
+} from '../../redux/searchResultsSlice';
 import {styles} from './styles';
 
 const HandleEmptySearch = () => {
@@ -23,7 +27,6 @@ export const SearchBar = () => {
   const updateSearchState = async () => {
     const data = await getSearchResults(text, 1);
     const searchResults = data.results;
-    console.log(searchResults);
     searchResults.length > 0
       ? dispatch(addResults(searchResults))
       : dispatch(clearResults());
@@ -36,7 +39,10 @@ export const SearchBar = () => {
           name="search"
           size={responsiveFontSize(3)}
           color="grey"
-          onPress={() => (text ? updateSearchState() : HandleEmptySearch())}
+          onPress={() => {
+            text ? updateSearchState() : HandleEmptySearch();
+            dispatch(updateQuery(text));
+          }}
         />
         <TextInput
           style={styles.searchBar}
@@ -44,9 +50,10 @@ export const SearchBar = () => {
           value={text}
           placeholder="Search for movies, tv shows, or actors"
           returnKeyType="search"
-          onSubmitEditing={() =>
-            text ? updateSearchState() : HandleEmptySearch()
-          }
+          onSubmitEditing={() => {
+            text ? updateSearchState() : HandleEmptySearch();
+            dispatch(updateQuery(text));
+          }}
         />
         {text != '' && (
           <Ionicons
