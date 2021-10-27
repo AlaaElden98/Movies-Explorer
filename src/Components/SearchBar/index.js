@@ -5,13 +5,13 @@ import {View, TextInput, ToastAndroid} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
-import {updateQuery} from '../../redux/searchResultsSlice';
+import {updateQuery} from '../../redux/searchSlice';
 import {styles} from './styles';
 
 export const SearchBar = () => {
   const [text, onChangeText] = useState('');
   const dispatch = useDispatch();
-  const currentQuery = useSelector(state => state.searchResults.query);
+  const currentQuery = useSelector(state => state.search.query);
 
   const updateQueryState = async () => {
     if (currentQuery === text) return;

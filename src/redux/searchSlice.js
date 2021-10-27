@@ -4,8 +4,8 @@ const initialState = {
   query: '',
 };
 
-const searchResultsSlice = createSlice({
-  name: 'searchResults',
+const searchSlice = createSlice({
+  name: 'search',
   initialState,
   reducers: {
     updateQuery: (state, action) => {
@@ -14,6 +14,6 @@ const searchResultsSlice = createSlice({
   },
 });
 
-export const {updateQuery} = searchResultsSlice.actions;
+export const {updateQuery} = searchSlice.actions;
 
-export default searchResultsSlice.reducer;
+export default searchSlice.reducer;

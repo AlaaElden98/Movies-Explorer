@@ -8,7 +8,7 @@ export const SearchList = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
-  const query = useSelector(state => state.searchResults.query);
+  const query = useSelector(state => state.search.query);
 
   const getSearch = async (pageNumber, newQuery = false) => {
     if (query === '' || !query) {
