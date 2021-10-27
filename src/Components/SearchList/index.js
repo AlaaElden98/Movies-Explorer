@@ -1,32 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, Text, View} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 
-import {pushToCurrentResults} from '../../redux/searchResultsSlice';
 import {getSearchResults} from '../../Api/getSearchResults';
 
 export const SearchList = () => {
-  const [page, setPage] = useState(2);
-  const dispatch = useDispatch();
-  const searchResults = useSelector(state => state.searchResults.results);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [searchResults, setSearchResults] = useState([]);
   const query = useSelector(state => state.searchResults.query);
-  const totalPages = useSelector(state => state.searchResults.totalPages);
 
-  //   useEffect(() => {
-  //     console.log('EFFECT');
-  //     setPage(2);
-  //   }, [query]);
-  const fetchNextResultPage = async () => {
-    console.log('pa', totalPages);
-    // const data = await getSearchResults(query, page);
-    // setPage(page + 1);
-    // dispatch(pushToCurrentResults(data.results));
+  const getSearch = async (pageNumber, newQuery = false) => {
+    if (query === '' || !query) {
+      setSearchResults();
+      return;
+    }
+    const data = await getSearchResults(query, pageNumber);
+    searchResults && !newQuery
+      ? setSearchResults([...searchResults, ...data.results])
+      : setSearchResults(data.results);
+    setTotalPages(data.total_pages);
   };
 
+  useEffect(() => {
+    getSearch(1, true);
+  }, [query]);
+
   const renderItem = ({item}) => {
+    const name = item.name ? item.name : item.title;
     return (
       <View style={{margin: 20}}>
-        <Text>{item.media_type}</Text>
+        <Text>{`Name : ${name}`}</Text>
       </View>
     );
   };
@@ -40,8 +44,11 @@ export const SearchList = () => {
         onEndReachedThreshold={0.5}
         onEndReached={
           page < totalPages
-            ? fetchNextResultPage
-            : console.log('End of results')
+            ? () => {
+                setPage(page + 1);
+                getSearch(page, false);
+              }
+            : console.log('end')
         }
       />
     </View>

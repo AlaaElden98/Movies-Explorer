@@ -5,13 +5,7 @@ import {View, TextInput, ToastAndroid} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
-import {getSearchResults} from '../../Api/getSearchResults';
-import {
-  addResults,
-  clearResults,
-  updateQuery,
-  setTotalPage,
-} from '../../redux/searchResultsSlice';
+import {updateQuery} from '../../redux/searchResultsSlice';
 import {styles} from './styles';
 
 export const SearchBar = () => {
@@ -19,22 +13,18 @@ export const SearchBar = () => {
   const dispatch = useDispatch();
   const currentQuery = useSelector(state => state.searchResults.query);
 
-  const updateSearchState = async () => {
+  const updateQueryState = async () => {
     if (currentQuery === text) return;
-    const data = await getSearchResults(text, 1);
-    const searchResults = data.results;
-    searchResults.length > 0
-      ? dispatch(addResults(searchResults))
-      : dispatch(clearResults());
-    dispatch(setTotalPage(data.total_pages));
+    dispatch(updateQuery(text));
   };
+
   const HandleEmptySearch = () => {
     Platform.OS == 'android'
       ? ToastAndroid.show('Empty search', ToastAndroid.SHORT)
       : Toast.show({
           text1: 'Empty search',
         });
-    dispatch(clearResults());
+    dispatch(updateQuery(''));
   };
 
   return (
@@ -44,8 +34,7 @@ export const SearchBar = () => {
         size={responsiveFontSize(3)}
         color="grey"
         onPress={() => {
-          text ? updateSearchState() : HandleEmptySearch();
-          dispatch(updateQuery(text));
+          text ? updateQueryState() : HandleEmptySearch();
         }}
       />
       <TextInput
@@ -55,8 +44,7 @@ export const SearchBar = () => {
         placeholder="Search for movies, tv shows, or actors"
         returnKeyType="search"
         onSubmitEditing={() => {
-          text ? updateSearchState() : HandleEmptySearch();
-          dispatch(updateQuery(text));
+          text ? updateQueryState() : HandleEmptySearch();
         }}
       />
       {text != '' && (
