@@ -3,11 +3,16 @@ import {FlatList, Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {getSearchResults} from '../../Api/getSearchResults';
+import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
+
+import {Card} from '../Card';
 
 export const SearchList = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
+  const [imageBaseUrl, setImageBaseUrl] = useState();
+
   const query = useSelector(state => state.search.query);
 
   const getSearch = async (pageNumber, newQuery = false) => {
@@ -19,6 +24,7 @@ export const SearchList = () => {
     searchResults && !newQuery
       ? setSearchResults([...searchResults, ...data.results])
       : setSearchResults(data.results);
+    console.log(searchResults);
     setTotalPages(data.total_pages);
   };
 
@@ -26,12 +32,28 @@ export const SearchList = () => {
     getSearch(1, true);
   }, [query]);
 
+  useEffect(async () => {
+    const uri = await getImagesBaseUrl();
+    setImageBaseUrl(uri);
+  }, []);
+
   const renderItem = ({item}) => {
-    const name = item.name ? item.name : item.title;
+    const mediaType = item.media_type;
     return (
-      <View style={{margin: 20}}>
-        <Text>{`Name : ${name}`}</Text>
-      </View>
+      mediaType !== 'person' && (
+        <Card
+          title={mediaType === 'movie' ? item.title : item.name}
+          overview={item.overview}
+          rate={item.vote_average}
+          date={mediaType === 'movie' ? item.release_date : item.first_air_date}
+          original_language={item.original_language}
+          imageUri={
+            item.poster_path != null
+              ? imageBaseUrl + 'original' + item.poster_path
+              : 'NO_IMAGE'
+          }
+        />
+      )
     );
   };
 
