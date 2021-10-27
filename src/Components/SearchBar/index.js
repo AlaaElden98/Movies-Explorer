@@ -41,7 +41,7 @@ export const SearchBar = () => {
         style={styles.searchBar}
         onChangeText={onChangeText}
         value={text}
-        placeholder="Search for movies, tv shows, or actors"
+        placeholder="Search for movies and tv shows"
         returnKeyType="search"
         onSubmitEditing={() => {
           text ? updateQueryState() : HandleEmptySearch();
