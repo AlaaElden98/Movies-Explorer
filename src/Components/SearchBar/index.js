@@ -52,7 +52,10 @@ export const SearchBar = () => {
           name="close"
           size={responsiveFontSize(3)}
           color="grey"
-          onPress={() => onChangeText('')}
+          onPress={() => {
+            onChangeText('');
+            dispatch(updateQuery(''));
+          }}
         />
       )}
     </View>
