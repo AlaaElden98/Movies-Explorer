@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {FlatList, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 
 import {getDataAbout} from '../../Api/getData';
@@ -7,6 +7,7 @@ import {Card} from '../../Components/Card';
 import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
 import {CustomActivityIndicator} from '../CustomActivityIndicator';
 import {TheEnd} from '../TheEnd';
+import {Loading} from '../Loading';
 
 export const List = ({navigation, route}) => {
   const {isMovie, type} = route.params;
@@ -60,17 +61,18 @@ export const List = ({navigation, route}) => {
     pageNumber < totalPages ? setPageNumber(pageNumber + 1) : setTheEnd(1);
   };
   return (
-    <View>
-      <FlatList
-        data={movies}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        onEndReachedThreshold={0.5}
-        onEndReached={fetchNextPage}
-        style={{backgroundColor: 'white'}}
-        ListFooterComponent={theEnd ? TheEnd : CustomActivityIndicator}
-      />
-    </View>
+    <FlatList
+      data={movies}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+      onEndReachedThreshold={0.5}
+      onEndReached={fetchNextPage}
+      style={{backgroundColor: 'white'}}
+      ListFooterComponent={theEnd ? TheEnd : Loading}
+      ListEmptyComponent={
+        <CustomActivityIndicator size={60} style={{marginTop: '50%'}} />
+      }
+    />
   );
 };
 
