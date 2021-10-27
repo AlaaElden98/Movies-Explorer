@@ -4,11 +4,11 @@ import {StyleSheet, View} from 'react-native';
 import {SearchBar} from '../Components/SearchBar';
 import {SearchList} from '../Components/SearchList';
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
   return (
     <View style={styles.screen}>
       <SearchBar />
-      <SearchList />
+      <SearchList navigation={navigation} />
     </View>
   );
 };

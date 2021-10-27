@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, Text, View, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {getSearchResults} from '../../Api/getSearchResults';
@@ -7,7 +7,7 @@ import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
 
 import {Card} from '../Card';
 
-export const SearchList = () => {
+export const SearchList = ({navigation}) => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
@@ -41,18 +41,29 @@ export const SearchList = () => {
     const mediaType = item.media_type;
     return (
       mediaType !== 'person' && (
-        <Card
-          title={mediaType === 'movie' ? item.title : item.name}
-          overview={item.overview}
-          rate={item.vote_average}
-          date={mediaType === 'movie' ? item.release_date : item.first_air_date}
-          original_language={item.original_language}
-          imageUri={
-            item.poster_path != null
-              ? imageBaseUrl + 'original' + item.poster_path
-              : 'NO_IMAGE'
-          }
-        />
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Details', {
+              parent: mediaType,
+              id: item.id,
+              imageBaseUrl: imageBaseUrl,
+            });
+          }}>
+          <Card
+            title={mediaType === 'movie' ? item.title : item.name}
+            overview={item.overview}
+            rate={item.vote_average}
+            date={
+              mediaType === 'movie' ? item.release_date : item.first_air_date
+            }
+            original_language={item.original_language}
+            imageUri={
+              item.poster_path != null
+                ? imageBaseUrl + 'original' + item.poster_path
+                : 'NO_IMAGE'
+            }
+          />
+        </TouchableOpacity>
       )
     );
   };
