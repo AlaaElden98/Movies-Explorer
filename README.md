@@ -12,6 +12,7 @@ The work is in progress.
 - [ ] Trigger dark mode
 - [ ] Search for a specific movie/Tv show
 
+### [Demo video of the app](https://github.com/AlaaElden98/Movies-Explorer/issues/5)
 ### TODO
 
 - [ ] Test the app componants and functions
