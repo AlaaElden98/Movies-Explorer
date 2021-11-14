@@ -10,7 +10,7 @@ The work is in progress.
 - [x] See the full details of a specific movie/Tvshow
 - [x] Add movie/Tvshow to watch list  
 - [ ] Trigger dark mode
-- [ ] Search for a specific movie/Tv show
+- [x] Search for a specific movie/Tv show
 
 ### [Demo video of the app](https://github.com/AlaaElden98/Movies-Explorer/issues/5)
 ### TODO
