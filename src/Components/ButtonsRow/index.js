@@ -20,8 +20,8 @@ export const ButtonsRow = props => {
   const dispatch = useDispatch();
 
   const myList = useSelector(state => state.myList.items);
-
-  const itemInList = myList.find(itemInList => itemInList.id === id);
+  const itemInList =
+    myList.length > 0 && myList.find(itemInList => itemInList.id === id);
 
   const [inMyList, setInMyList] = useState(itemInList ? true : false);
 

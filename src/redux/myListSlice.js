@@ -19,12 +19,16 @@ const myListSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action) => {
-      state.items.push(action.payload);
+      let items = state.items;
+      items.push(action.payload);
+      state.items = items;
       storeData('myList', state.items);
     },
     removeItem: (state, action) => {
-      let index = state.items.findIndex(item => item.id === action.payload);
-      state.items.splice(index, 1);
+      let items = state.items;
+      let index = items.findIndex(item => item.id === action.payload);
+      items.splice(index, 1);
+      state.items = items;
       storeData('myList', state.items);
     },
   },
