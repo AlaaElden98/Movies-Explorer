@@ -12,7 +12,5 @@ export const getDataAbout = async (isMovie, type, pageNumber) => {
   try {
     const response = await axios.get(url);
     return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };

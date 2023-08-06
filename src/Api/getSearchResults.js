@@ -13,7 +13,5 @@ export const getSearchResults = async (query, page = 1) => {
   try {
     const response = await axios.get(url);
     return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };

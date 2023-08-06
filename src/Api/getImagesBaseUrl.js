@@ -7,7 +7,5 @@ export const getImagesBaseUrl = async () => {
   try {
     const response = await axios.get(generateConfigUrl());
     return response.data.images.secure_base_url;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };

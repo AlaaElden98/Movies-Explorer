@@ -16,7 +16,5 @@ export const getDetails = async (isMovie, ID, images = false) => {
   try {
     const response = await axios.get(url);
     return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };

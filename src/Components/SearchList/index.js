@@ -24,7 +24,6 @@ export const SearchList = ({navigation}) => {
     searchResults && !newQuery
       ? setSearchResults([...searchResults, ...data.results])
       : setSearchResults(data.results);
-    console.log(searchResults);
     setTotalPages(data.total_pages);
   };
 
@@ -81,7 +80,7 @@ export const SearchList = ({navigation}) => {
                 setPage(page + 1);
                 getSearch(page, false);
               }
-            : console.log('end')
+            : null
         }
       />
     </View>

@@ -12,7 +12,5 @@ export const getPersonInfo = async personId => {
   try {
     const response = await axios.get(url);
     return response.data;
-  } catch (error) {
-    console.error(error);
-  }
+  } catch (error) {}
 };
