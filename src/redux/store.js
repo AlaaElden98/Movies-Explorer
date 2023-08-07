@@ -2,9 +2,12 @@ import {configureStore} from '@reduxjs/toolkit';
 
 import myListReducer from './myListSlice';
 import searchReducer from './searchSlice';
-export default store = configureStore({
+
+const store = configureStore({
   reducer: {
     myList: myListReducer,
     search: searchReducer,
   },
 });
+
+export default store;

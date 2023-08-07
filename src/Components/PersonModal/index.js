@@ -1,14 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, useRef} from 'react';
 import {ScrollView, Text, Image, View} from 'react-native';
 import {Modalize} from 'react-native-modalize';
 
-import {getPersonInfo} from '../../Api/getPersonInfo';
+import {styles} from './styles';
 import {
   ImageUrl,
-  responsiveHeight,
   CalculateAge,
+  responsiveHeight,
 } from '../../Utilis/helperFunctions';
-import {styles} from './styles';
+import {getPersonInfo} from '../../Api/getPersonInfo';
 
 export const PersonModal = props => {
   const modalizeRef = useRef(null);
@@ -76,4 +77,3 @@ export const PersonModal = props => {
     </Modalize>
   );
 };
-

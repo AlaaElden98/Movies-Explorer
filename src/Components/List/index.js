@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
-import {FlatList, TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
+import {FlatList, TouchableOpacity} from 'react-native';
 
-import {getDataAbout} from '../../Api/getData';
-import {Card} from '../../Components/Card';
-import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
-import {CustomActivityIndicator} from '../CustomActivityIndicator';
 import {TheEnd} from '../TheEnd';
 import {Loading} from '../Loading';
+import {Card} from '../../Components/Card';
+import {getDataAbout} from '../../Api/getData';
+import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
+import {CustomActivityIndicator} from '../CustomActivityIndicator';
 
 export const List = ({navigation, route}) => {
   const {isMovie, type} = route.params;

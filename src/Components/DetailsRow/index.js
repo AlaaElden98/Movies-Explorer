@@ -1,13 +1,14 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
 import PropTypes from 'prop-types';
+
+import {styles} from './styles';
 import {
-  convertMinutesToReadableTime,
-  converToDollars,
   getGenresNames,
+  converToDollars,
+  convertMinutesToReadableTime,
 } from '../../Utilis/helperFunctions';
 import language from '../../Constants/language.json';
-import {styles} from './styles';
 
 export const DetailsRow = props => {
   const {
@@ -36,15 +37,15 @@ export const DetailsRow = props => {
     {title: 'Status', body: status},
     {
       title: 'Date',
-      body: release_date && release_date != '' ? release_date : '-',
+      body: release_date && release_date !== '' ? release_date : '-',
     },
     {
       title: 'Budget',
-      body: budget == 0 || !budget ? '-' : converToDollars(budget),
+      body: budget === 0 || !budget ? '-' : converToDollars(budget),
     },
     {
       title: 'Revenue',
-      body: revenue == 0 || !revenue ? '-' : converToDollars(revenue),
+      body: revenue === 0 || !revenue ? '-' : converToDollars(revenue),
     },
   ];
 

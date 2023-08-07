@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Toast from 'react-native-toast-message';
-import {View, TextInput, ToastAndroid} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {View, TextInput, ToastAndroid, Platform} from 'react-native';
 
-import {responsiveFontSize} from '../../Utilis/helperFunctions';
-import {updateQuery} from '../../redux/searchSlice';
 import {styles} from './styles';
+import {updateQuery} from '../../redux/searchSlice';
+import {responsiveFontSize} from '../../Utilis/helperFunctions';
 
 export const SearchBar = () => {
   const [text, onChangeText] = useState('');
@@ -14,12 +14,14 @@ export const SearchBar = () => {
   const currentQuery = useSelector(state => state.search.query);
 
   const updateQueryState = async () => {
-    if (currentQuery === text) return;
+    if (currentQuery === text) {
+      return;
+    }
     dispatch(updateQuery(text));
   };
 
   const HandleEmptySearch = () => {
-    Platform.OS == 'android'
+    Platform.OS === 'android'
       ? ToastAndroid.show('Empty search', ToastAndroid.SHORT)
       : Toast.show({
           text1: 'Empty search',
@@ -47,7 +49,7 @@ export const SearchBar = () => {
           text ? updateQueryState() : HandleEmptySearch();
         }}
       />
-      {text != '' && (
+      {text !== '' && (
         <Ionicons
           name="close"
           size={responsiveFontSize(3)}

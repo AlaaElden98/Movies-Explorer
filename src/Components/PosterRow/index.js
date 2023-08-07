@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 import ImageView from 'react-native-image-viewing';
+import {View, Text, ImageBackground, TouchableOpacity} from 'react-native';
 
 import {styles} from './styles';
 
 export const PosterRow = props => {
   const {
+    rate,
+    title,
     images,
-    showImage,
     onPress,
     onClose,
-    backgroundImage,
-    title,
     tagline,
-    rate,
+    showImage,
+    backgroundImage,
   } = props;
   return (
     <View>
@@ -24,13 +24,13 @@ export const PosterRow = props => {
         onPress={onPress}>
         <ImageBackground
           source={
-            backgroundImage == 'NO_IMAGE'
+            backgroundImage === 'NO_IMAGE'
               ? require('../../assests/NO_IMAGE.jpg')
               : {
                   uri: backgroundImage,
                 }
           }
-          resizeMode={backgroundImage == 'NO_IMAGE' ? 'contain' : 'cover'}
+          resizeMode={backgroundImage === 'NO_IMAGE' ? 'contain' : 'cover'}
           style={styles.image}>
           <View style={styles.imageInfo}>
             <View>
@@ -56,11 +56,11 @@ export const PosterRow = props => {
 };
 
 PosterRow.propTypes = {
-  images: PropTypes.array.isRequired,
-  showImage: PropTypes.bool.isRequired,
-  onPress: PropTypes.func.isRequired,
-  backgroundImage: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
   tagline: PropTypes.string,
   rate: PropTypes.number.isRequired,
+  images: PropTypes.array.isRequired,
+  onPress: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  showImage: PropTypes.bool.isRequired,
+  backgroundImage: PropTypes.string.isRequired,
 };

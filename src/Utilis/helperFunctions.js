@@ -39,7 +39,9 @@ export const responsiveHeight = val => {
 
 export const convertMinutesToReadableTime = time => {
   let hours = (time / 60).toFixed();
-  if (hours < 10) hours = '0' + hours;
+  if (hours < 10) {
+    hours = '0' + hours;
+  }
   const minutes = time % 60;
   return `${hours}h ${minutes}m`;
 };
@@ -76,7 +78,9 @@ export const getRateColor = rate => {
   const Strongpink = '#C70039';
   const LightOrange = '#FFD580';
   const LimeGreen = '#54c254';
-  if (rate == 0) return 'black';
+  if (rate === 0) {
+    return 'black';
+  }
   const rateColor = rate < 5 ? Strongpink : rate < 7 ? LightOrange : LimeGreen;
   return rateColor;
 };

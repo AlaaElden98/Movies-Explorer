@@ -27,11 +27,11 @@ export const generateGetDataUrl = (isMovie, type, pageNumber = 0) => {
     '/' +
     (isMovie ? MOVIE_PATH : TV_PATH) +
     '/' +
-    (type == 1 ? POPULAR_PATH : type == 2 ? TOP_RATED : UPCOMING) +
+    (type === 1 ? POPULAR_PATH : type === 2 ? TOP_RATED : UPCOMING) +
     '?' +
     API_KEY_QUERY +
     API_KEY;
-  return pageNumber == 0 ? url : url + `&page=${pageNumber}`;
+  return pageNumber === 0 ? url : url + `&page=${pageNumber}`;
 };
 
 export const generateConfigUrl = () => {

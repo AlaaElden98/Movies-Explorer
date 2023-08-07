@@ -1,8 +1,8 @@
 import React from 'react';
 import {Text, FlatList, Image, View, TouchableOpacity} from 'react-native';
 
-import {ImageUrl} from '../../Utilis/helperFunctions';
 import {styles} from './styles';
+import {ImageUrl} from '../../Utilis/helperFunctions';
 
 export const CastRow = props => {
   const {cast, imageBaseUrl, handleModal} = props;
@@ -16,7 +16,7 @@ export const CastRow = props => {
         <View style={styles.personContainer}>
           <Image
             source={
-              imageUri == 'NO_IMAGE'
+              imageUri === 'NO_IMAGE'
                 ? require('../../assests/NO_IMAGE.jpg')
                 : {uri: imageUri}
             }

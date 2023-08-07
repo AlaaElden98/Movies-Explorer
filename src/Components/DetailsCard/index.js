@@ -1,15 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {ScrollView, View, Text} from 'react-native';
 
+import {styles} from './styles';
+import {CastRow} from '../CastRow';
 import {PosterRow} from '../PosterRow';
 import {ButtonsRow} from '../ButtonsRow';
 import {DetailsRow} from '../DetailsRow';
-import {CastRow} from '../CastRow';
-import {ImageUrl} from '../../Utilis/helperFunctions';
 import {PersonModal} from '../PersonModal';
-import {styles} from './styles';
 import {getDetails} from '../../Api/getDetails';
+import {ImageUrl} from '../../Utilis/helperFunctions';
 
 export const DetailsCard = props => {
   const {
@@ -44,7 +45,7 @@ export const DetailsCard = props => {
   useEffect(async () => {
     let backDrops = [];
 
-    const data = await getDetails(parent == 'movie' ? true : false, id, true);
+    const data = await getDetails(parent === 'movie' ? true : false, id, true);
 
     for (let i = 0; i < data.backdrops.length; ++i) {
       backDrops.push({
@@ -53,9 +54,9 @@ export const DetailsCard = props => {
     }
     setImages(backDrops);
   }, []);
-  const handleModal = personId => {
+  const handleModal = _personId => {
     showModal(true);
-    setPersonId(personId);
+    setPersonId(_personId);
   };
   return (
     <View style={styles.container}>
@@ -68,7 +69,7 @@ export const DetailsCard = props => {
           backgroundImage={
             backdrop_path ? ImageUrl(imageBaseUrl, backdrop_path) : 'NO_IMAGE'
           }
-          title={parent == 'movie' ? title : name}
+          title={parent === 'movie' ? title : name}
           tagline={tagline}
           rate={vote_average}
         />
@@ -83,14 +84,14 @@ export const DetailsCard = props => {
           runtime={runtime}
           status={status}
           revenue={revenue}
-          release_date={parent == 'movie' ? release_date : first_air_date}
+          release_date={parent === 'movie' ? release_date : first_air_date}
           budget={budget}
           original_language={original_language}
           genres={genres}
           number_of_episodes={number_of_episodes}
           number_of_seasons={number_of_seasons}
         />
-        {(overview || overview != '') && (
+        {(overview || overview !== '') && (
           <View style={styles.overvieContainer}>
             <Text style={styles.overviewTitle}>Overview</Text>
             <Text style={styles.overviewBody}>{overview}</Text>
@@ -99,7 +100,7 @@ export const DetailsCard = props => {
         <CastRow
           cast={cast}
           imageBaseUrl={imageBaseUrl}
-          handleModal={id => handleModal(id)}
+          handleModal={_id => handleModal(_id)}
         />
       </ScrollView>
       {modal && (

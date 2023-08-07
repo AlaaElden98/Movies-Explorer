@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {
   View,
@@ -9,8 +10,8 @@ import {
 import {useSelector, useDispatch} from 'react-redux';
 
 import {getImagesBaseUrl} from '../Api/getImagesBaseUrl';
-import {responsiveHeight, responsiveWidth} from '../Utilis/helperFunctions';
 import {getListFromAsyncStorage} from '../redux/myListSlice';
+import {responsiveHeight, responsiveWidth} from '../Utilis/helperFunctions';
 
 const MyListScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
