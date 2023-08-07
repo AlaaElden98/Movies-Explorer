@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text, View, TouchableOpacity} from 'react-native';
+import {FlatList, View, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
 
 import {getSearchResults} from '../../Api/getSearchResults';

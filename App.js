@@ -1,14 +1,12 @@
 import React from 'react';
 import {LogBox} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import Toast from 'react-native-toast-message';
-import store from './src/redux/store';
 import {Provider} from 'react-redux';
+import store from './src/redux/store';
+import Toast from 'react-native-toast-message';
+import {NavigationContainer} from '@react-navigation/native';
 
 import {ButtomTabs} from './src/Components/ButtomTabs';
 
-const Stack = createStackNavigator();
 LogBox.ignoreLogs(['Reanimated 2']);
 LogBox.ignoreLogs(['Encountered two children']);
 
@@ -17,7 +15,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <ButtomTabs />
-        <Toast ref={ref => Toast.setRef(ref)} />
+        <Toast />
       </NavigationContainer>
     </Provider>
   );

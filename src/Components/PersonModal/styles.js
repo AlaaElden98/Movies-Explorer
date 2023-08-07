@@ -1,8 +1,8 @@
 import {StyleSheet} from 'react-native';
 import {
-  responsiveFontSize,
-  responsiveHeight,
   responsiveWidth,
+  responsiveHeight,
+  responsiveFontSize,
 } from '../../Utilis/helperFunctions';
 
 export const styles = StyleSheet.create({
