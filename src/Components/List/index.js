@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {FlatList, TouchableOpacity} from 'react-native';
 
 import {TheEnd} from '../TheEnd';
-import {Loading} from '../Loading';
 import {Card} from '../../Components/Card';
 import {getDataAbout} from '../../Api/getData';
 import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
