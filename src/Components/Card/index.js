@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {View, Text, Image} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {styles} from './styles';
+import {
+  reverseDate,
+  getRateColor,
+  responsiveWidth,
+  responsiveFontSize,
+} from '../../Utilis/helperFunctions';
 import language from '../../Constants/language.json';
-import {reverseDate, getRateColor} from '../../Utilis/helperFunctions';
 
 export const Card = props => {
   const {imageUri, title, rate, date, original_language} = props;
@@ -26,9 +32,25 @@ export const Card = props => {
         <Text numberOfLines={3} ellipsizeMode="tail" style={styles.title}>
           {title}
         </Text>
-        <Text style={styles.date}>{language[original_language]}</Text>
+        <View style={styles.row}>
+          <Ionicons
+            name="language"
+            size={responsiveFontSize(2)}
+            color="grey"
+            style={{paddingRight: responsiveWidth(2)}}
+          />
+          <Text style={styles.date}>{language[original_language]}</Text>
+        </View>
         {date && date !== '' ? (
-          <Text style={styles.date}>{reverseDate(date)}</Text>
+          <View style={styles.row}>
+            <Ionicons
+              name="calendar"
+              size={responsiveFontSize(2)}
+              color="grey"
+              style={{paddingRight: responsiveWidth(2)}}
+            />
+            <Text style={styles.date}>{reverseDate(date)}</Text>
+          </View>
         ) : null}
         <View
           style={[styles.rateContainer, {backgroundColor: getRateColor(rate)}]}>

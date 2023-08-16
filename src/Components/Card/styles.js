@@ -43,4 +43,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
