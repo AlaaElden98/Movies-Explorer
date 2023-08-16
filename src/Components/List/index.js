@@ -69,7 +69,9 @@ export const List = ({navigation, route}) => {
       onEndReachedThreshold={0.5}
       onEndReached={fetchNextPage}
       style={{backgroundColor: 'white'}}
-      ListFooterComponent={theEnd ? TheEnd : Loading}
+      ListFooterComponent={
+        theEnd ? TheEnd : <CustomActivityIndicator size={30} />
+      }
       ListEmptyComponent={
         <CustomActivityIndicator size={60} style={{marginTop: '50%'}} />
       }
