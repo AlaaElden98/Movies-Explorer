@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import PropTypes from 'prop-types';
 
 import {getDetails} from '../Api/getDetails';
 import {getCredits} from '../Api/getCredits';
 import {DetailsCard} from '../Components/DetailsCard';
+import {CustomActivityIndicator} from '../Components/CustomActivityIndicator';
 
 const DetailsScreen = ({route}) => {
   const {parent, id, imageBaseUrl} = route.params;
@@ -23,7 +24,10 @@ const DetailsScreen = ({route}) => {
       {details ? (
         <DetailsCard details={details} imageBaseUrl={imageBaseUrl} />
       ) : (
-        <Text>Loading...</Text>
+        <CustomActivityIndicator
+          size={60}
+          style={{flex: 1, justifyContent: 'center'}}
+        />
       )}
     </View>
   );
