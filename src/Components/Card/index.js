@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, Image} from 'react-native';
+import {View, Text} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {styles} from './styles';
@@ -10,24 +10,14 @@ import {
   responsiveWidth,
   responsiveFontSize,
 } from '../../Utilis/helperFunctions';
+import {ImageComponent} from '../ImageComponent';
 import language from '../../Constants/language.json';
 
 export const Card = props => {
   const {imageUri, title, rate, date, original_language} = props;
   return (
     <View style={styles.container}>
-      <Image
-        source={
-          imageUri === 'NO_IMAGE'
-            ? require('../../assests/NO_IMAGE.jpg')
-            : {
-                uri: imageUri,
-              }
-        }
-        resizeMode="contain"
-        style={styles.image}
-      />
-
+      <ImageComponent uri={imageUri} style={styles.image} />
       <View style={styles.rightSideContainer}>
         <Text numberOfLines={3} ellipsizeMode="tail" style={styles.title}>
           {title}

@@ -57,10 +57,12 @@ export const List = ({navigation, route}) => {
       </TouchableOpacity>
     );
   };
+
   const fetchNextPage = () => {
     pageNumber < totalPages ? setPageNumber(pageNumber + 1) : setTheEnd(1);
   };
-  return (
+
+  return movies && movies.length ? (
     <FlatList
       data={movies}
       renderItem={renderItem}
@@ -75,6 +77,8 @@ export const List = ({navigation, route}) => {
         <CustomActivityIndicator size={60} style={{marginTop: '50%'}} />
       }
     />
+  ) : (
+    <CustomActivityIndicator size={60} style={{marginTop: '50%'}} />
   );
 };
 

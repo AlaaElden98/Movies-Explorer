@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, useRef} from 'react';
-import {ScrollView, Text, Image, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import {Modalize} from 'react-native-modalize';
 
 import {styles} from './styles';
@@ -9,6 +9,7 @@ import {
   CalculateAge,
   responsiveHeight,
 } from '../../Utilis/helperFunctions';
+import {ImageComponent} from '../ImageComponent';
 import {getPersonInfo} from '../../Api/getPersonInfo';
 
 export const PersonModal = props => {
@@ -39,13 +40,10 @@ export const PersonModal = props => {
       {personInfo ? (
         <ScrollView style={styles.container}>
           <View style={styles.mainInfoContainer}>
-            <Image
-              source={
-                personInfo.profile_path
-                  ? {uri: ImageUrl(imageBaseUrl, personInfo.profile_path)}
-                  : require('../../assests/NO_IMAGE.jpg')
-              }
+            <ImageComponent
+              uri={ImageUrl(imageBaseUrl, personInfo.profile_path)}
               style={styles.image}
+              resizeMode="cover"
             />
             <View style={styles.mainInfo}>
               <Text style={styles.head}>{personInfo.name}</Text>

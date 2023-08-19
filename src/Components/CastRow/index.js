@@ -1,33 +1,28 @@
 import React from 'react';
-import {Text, FlatList, Image, View, TouchableOpacity} from 'react-native';
+import {Text, FlatList, View, TouchableOpacity} from 'react-native';
 
 import {styles} from './styles';
 import {ImageUrl} from '../../Utilis/helperFunctions';
+import {ImageComponent} from '../ImageComponent';
 
 export const CastRow = props => {
   const {cast, imageBaseUrl, handleModal} = props;
   const handlePress = id => {
     handleModal(id);
   };
+
   const renderItem = ({item}) => {
     const imageUri = ImageUrl(imageBaseUrl, item.profile_path);
     return (
       <TouchableOpacity onPress={() => handlePress(item.id)}>
         <View style={styles.personContainer}>
-          <Image
-            source={
-              imageUri === 'NO_IMAGE'
-                ? require('../../assests/NO_IMAGE.jpg')
-                : {uri: imageUri}
-            }
-            style={styles.personImage}
-            resizeMode="contain"
-          />
+          <ImageComponent uri={imageUri} style={styles.personImage} />
           <Text>{item.name}</Text>
         </View>
       </TouchableOpacity>
     );
   };
+
   return (
     <View>
       <FlatList
