@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {ScrollView, View, Text} from 'react-native';
@@ -42,22 +41,25 @@ export const DetailsCard = props => {
   const [personId, setPersonId] = useState();
   const [images, setImages] = useState([]);
 
-  useEffect(async () => {
-    let backDrops = [];
-
-    const data = await getDetails(parent === 'movie' ? true : false, id, true);
-
-    for (let i = 0; i < data.backdrops.length; ++i) {
-      backDrops.push({
-        uri: ImageUrl(imageBaseUrl, data.backdrops[i].file_path),
-      });
+  useEffect(() => {
+    async function fetchImages() {
+      let backDrops = [];
+      const data = await getDetails(parent === 'movie', id, true);
+      for (let i = 0; i < data.backdrops.length; ++i) {
+        backDrops.push({
+          uri: ImageUrl(imageBaseUrl, data.backdrops[i].file_path),
+        });
+      }
+      setImages(backDrops);
     }
-    setImages(backDrops);
-  }, []);
+    fetchImages();
+  }, [id, imageBaseUrl, parent]);
+
   const handleModal = _personId => {
     showModal(true);
     setPersonId(_personId);
   };
+
   return (
     <View style={styles.container}>
       <ScrollView>

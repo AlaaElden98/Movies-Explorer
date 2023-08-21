@@ -21,6 +21,7 @@ const MyListScreen = ({navigation, route}) => {
     const uri = await getImagesBaseUrl();
     setImageBaseUrl(uri);
   }, []);
+
   useEffect(() => {
     getMyList();
   }, []);

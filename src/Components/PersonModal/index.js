@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, useRef} from 'react';
 import {ScrollView, Text, View} from 'react-native';
 import {Modalize} from 'react-native-modalize';
@@ -27,10 +26,13 @@ export const PersonModal = props => {
     handleOpen();
   }, []);
 
-  useEffect(async () => {
-    const data = await getPersonInfo(id);
-    setPersonInfo(data);
-  }, []);
+  useEffect(() => {
+    async function fetchPersonInfo() {
+      const data = await getPersonInfo(id);
+      setPersonInfo(data);
+    }
+    fetchPersonInfo();
+  }, [id]);
 
   return (
     <Modalize

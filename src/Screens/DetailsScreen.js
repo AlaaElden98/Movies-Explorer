@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
 import {View} from 'react-native';
 import PropTypes from 'prop-types';
@@ -11,14 +10,16 @@ import {CustomActivityIndicator} from '../Components/CustomActivityIndicator';
 const DetailsScreen = ({route}) => {
   const {parent, id, imageBaseUrl} = route.params;
   const [details, setDetails] = useState();
-  const getMovieDetail = async () => {
-    const data = await getDetails(parent === 'movie' ? true : false, id);
-    const credits = await getCredits(parent === 'movie' ? true : false, id);
-    setDetails({...data, ...credits, id: id, parent: parent});
-  };
+
   useEffect(() => {
+    async function getMovieDetail() {
+      const data = await getDetails(parent === 'movie' ? true : false, id);
+      const credits = await getCredits(parent === 'movie' ? true : false, id);
+      setDetails({...data, ...credits, id: id, parent: parent});
+    }
     getMovieDetail();
-  }, []);
+  }, [id, parent]);
+
   return (
     <View style={{flex: 1}}>
       {details ? (
