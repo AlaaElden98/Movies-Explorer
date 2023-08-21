@@ -28,30 +28,36 @@ const MyListScreen = ({navigation, route}) => {
 
   const DATA = useSelector(state => state.myList.items);
 
+  const handleOnPressItem = item => {
+    navigation.navigate('Details', {
+      parent: item.parent,
+      id: item.id,
+      imageBaseUrl: imageBaseUrl,
+    });
+  };
+
   const renderItem = ({item}) => (
     <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Details', {
-          parent: item.parent,
-          id: item.id,
-          imageBaseUrl: imageBaseUrl,
-        });
-      }}>
+      onPress={() => handleOnPressItem(item)}
+      activeOpacity={0.7}>
       <ImageComponent
         uri={imageBaseUrl + 'original' + item.poster_path}
-        resizeMode="cover"
+        resizeMode="stretch"
         style={styles.image}
       />
     </TouchableOpacity>
   );
 
   return (
-    <View style={{flex: 1, margin: 10}}>
+    <View style={{flex: 1}}>
       <FlatList
         data={DATA}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         numColumns={3}
+        contentContainerStyle={styles.contentContainer}
+        ItemSeparatorComponent={() => <View style={{padding: 6}} />}
+        columnWrapperStyle={styles.columnWrapper}
       />
     </View>
   );
@@ -59,10 +65,17 @@ const MyListScreen = ({navigation, route}) => {
 
 const styles = StyleSheet.create({
   image: {
-    margin: 5,
     borderRadius: 15,
     width: responsiveWidth(30),
     height: responsiveHeight(30),
+  },
+  columnWrapper: {
+    width: '100%',
+    justifyContent: 'space-evenly',
+  },
+  contentContainer: {
+    paddingVertical: 8,
+    alignItems: 'flex-start',
   },
 });
 export default MyListScreen;

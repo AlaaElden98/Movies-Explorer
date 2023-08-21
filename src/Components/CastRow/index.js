@@ -34,7 +34,8 @@ export const CastRow = props => {
         renderItem={renderItem}
         horizontal={true}
         ItemSeparatorComponent={renderItemSeperator}
-        style={{paddingBottom: 20}}
+        contentContainerStyle={{paddingBottom: 20}}
+        showsHorizontalScrollIndicator
       />
     </View>
   );

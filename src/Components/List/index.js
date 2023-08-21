@@ -32,16 +32,19 @@ export const List = ({navigation, route}) => {
     setImageBaseUrl(uri);
   }, []);
 
+  const handleOnPressItem = item => {
+    navigation.navigate('Details', {
+      parent: isMovie ? 'movie' : 'tv',
+      id: item.id,
+      imageBaseUrl: imageBaseUrl,
+    });
+  };
+
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Details', {
-            parent: isMovie ? 'movie' : 'tv',
-            id: item.id,
-            imageBaseUrl: imageBaseUrl,
-          });
-        }}>
+        onPress={() => handleOnPressItem(item)}
+        activeOpacity={0.7}>
         <Card
           title={isMovie ? item.title : item.name}
           overview={item.overview}
