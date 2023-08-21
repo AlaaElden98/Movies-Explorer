@@ -2,8 +2,8 @@ import React from 'react';
 import {Text, FlatList, View, TouchableOpacity} from 'react-native';
 
 import {styles} from './styles';
-import {ImageUrl} from '../../Utilis/helperFunctions';
 import {ImageComponent} from '../ImageComponent';
+import {ImageUrl} from '../../Utilis/helperFunctions';
 
 export const CastRow = props => {
   const {cast, imageBaseUrl, handleModal} = props;
@@ -12,6 +12,7 @@ export const CastRow = props => {
   };
 
   const renderItem = ({item}) => {
+    if (!item.profile_path) return;
     const imageUri = ImageUrl(imageBaseUrl, item.profile_path);
     return (
       <TouchableOpacity onPress={() => handlePress(item.id)}>
@@ -23,6 +24,8 @@ export const CastRow = props => {
     );
   };
 
+  const renderItemSeperator = () => <View style={{padding: 4}} />;
+
   return (
     <View>
       <FlatList
@@ -30,6 +33,8 @@ export const CastRow = props => {
         keyExtractor={item => item.id}
         renderItem={renderItem}
         horizontal={true}
+        ItemSeparatorComponent={renderItemSeperator}
+        style={{paddingBottom: 20}}
       />
     </View>
   );
