@@ -16,6 +16,8 @@ target 'MoviesExplorerIos' do
 
   pod 'react-native-config', :path => '../node_modules/react-native-config'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
   target 'MoviesExplorerIosTests' do
     inherit! :complete
     # Pods for testing
