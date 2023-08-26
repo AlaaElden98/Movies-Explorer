@@ -10,7 +10,7 @@ export const getListFromAsyncStorage = createAsyncThunk(
   'myList/getListFromAsyncStorage',
   async () => {
     const data = await getData('myList');
-    return data != null ? data : initialState;
+    return data && data.length > 0 ? data : initialState.items;
   },
 );
 
