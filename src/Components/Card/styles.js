@@ -5,6 +5,7 @@ import {
   responsiveHeight,
   responsiveFontSize,
 } from '../../Utilis/helperFunctions';
+import Colors from '../../Constants/Colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -35,7 +36,7 @@ export const styles = StyleSheet.create({
   },
   date: {
     fontSize: responsiveFontSize(2),
-    color: '#525252',
+    color: Colors.heavyDarkGray,
     fontStyle: 'italic',
   },
   rightSideContainer: {

@@ -1,4 +1,6 @@
 import {StyleSheet} from 'react-native';
+
+import Colors from '../../Constants/Colors';
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
 
 export const styles = StyleSheet.create({
@@ -9,5 +11,8 @@ export const styles = StyleSheet.create({
   },
   overvieContainer: {padding: 10, margin: 1},
   overviewTitle: {fontSize: responsiveFontSize(2.8)},
-  overviewBody: {fontSize: responsiveFontSize(2.2), color: '#525252'},
+  overviewBody: {
+    fontSize: responsiveFontSize(2.2),
+    color: Colors.heavyDarkGray,
+  },
 });

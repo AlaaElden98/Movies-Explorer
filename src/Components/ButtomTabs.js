@@ -8,6 +8,7 @@ import {
   MyListStackScreen,
   TvShowsStackScreen,
 } from '../NavigationStacks/index';
+import Colors from '../Constants/Colors';
 import {Film24, List24, Search24, Tv24} from '../assests';
 
 const Tab = createBottomTabNavigator();
@@ -18,7 +19,7 @@ export const ButtomTabs = () => {
       initialRouteName="Movies"
       tabBarOptions={{
         showLabel: false,
-        activeBackgroundColor: '#ece9e9',
+        activeBackgroundColor: Colors.lightGrayishRed,
       }}>
       <Tab.Screen
         name="Movies"

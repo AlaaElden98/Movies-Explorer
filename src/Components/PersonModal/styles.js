@@ -1,9 +1,11 @@
 import {StyleSheet} from 'react-native';
+
 import {
   responsiveWidth,
   responsiveHeight,
   responsiveFontSize,
 } from '../../Utilis/helperFunctions';
+import Colors from '../../Constants/Colors';
 
 export const styles = StyleSheet.create({
   container: {padding: 10, margin: 15},
@@ -23,7 +25,7 @@ export const styles = StyleSheet.create({
   },
   body: {
     fontSize: responsiveFontSize(2.3),
-    color: '#525252',
+    color: Colors.heavyDarkGray,
   },
   biographyContainer: {
     flex: 1,

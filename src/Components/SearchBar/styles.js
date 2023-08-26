@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 
+import Colors from '../../Constants/Colors';
 import {responsiveWidth, responsiveHeight} from '../../Utilis/helperFunctions';
 
 export const styles = StyleSheet.create({
@@ -9,7 +10,7 @@ export const styles = StyleSheet.create({
     margin: 10,
   },
   searchBarContainer: {
-    backgroundColor: '#fafafa',
+    backgroundColor: Colors.grayishWhite,
     flexDirection: 'row',
     alignItems: 'center',
     padding: 5,

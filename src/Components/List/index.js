@@ -5,6 +5,7 @@ import {FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {TheEnd} from '../TheEnd';
 import {Card} from '../../Components/Card';
+import Colors from '../../Constants/Colors';
 import {getDataAbout} from '../../Api/getData';
 import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
 import {CustomActivityIndicator} from '../CustomActivityIndicator';
@@ -73,7 +74,7 @@ export const List = ({navigation, route}) => {
       keyExtractor={item => item.id}
       onEndReachedThreshold={0.5}
       onEndReached={fetchNextPage}
-      style={{backgroundColor: '#f8f8f8'}}
+      style={{backgroundColor: Colors.lightGray}}
       ListFooterComponent={
         theEnd ? TheEnd : <CustomActivityIndicator size={30} />
       }
