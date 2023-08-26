@@ -1,21 +1,15 @@
 import React from 'react';
+import {Image} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import IoniconsIcon from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-import {
-  BUTTOM_TABS_ACTIVE_BACKGROUND_COLOR,
-  BUTTOM_TABS_ACTIVE_TINT_COLOR,
-  BUTTOM_TABS_ICONS_SIZE,
-  BUTTOM_TABS_LABELS_SIZE,
-} from '../Constants/ButtomTabsVars';
-import {responsiveFontSize, responsiveWidth} from '../Utilis/helperFunctions';
 import {
   MoviesStackScreen,
   SearchStackScreen,
-  TvShowsStackScreen,
   MyListStackScreen,
+  TvShowsStackScreen,
 } from '../NavigationStacks/index';
+import {Film24, List24, Search24, Tv24} from '../assests';
+
 const Tab = createBottomTabNavigator();
 
 export const ButtomTabs = () => {
@@ -23,62 +17,35 @@ export const ButtomTabs = () => {
     <Tab.Navigator
       initialRouteName="Movies"
       tabBarOptions={{
-        activeTintColor: BUTTOM_TABS_ACTIVE_TINT_COLOR,
-        activeBackgroundColor: BUTTOM_TABS_ACTIVE_BACKGROUND_COLOR,
-        labelStyle: {
-          fontSize: responsiveFontSize(BUTTOM_TABS_LABELS_SIZE),
-        },
+        showLabel: false,
+        activeBackgroundColor: '#ece9e9',
       }}>
       <Tab.Screen
         name="Movies"
         component={MoviesStackScreen}
         options={{
-          title: 'Movies',
-          tabBarIcon: () => (
-            <IoniconsIcon
-              name="film"
-              size={responsiveWidth(BUTTOM_TABS_ICONS_SIZE)}
-            />
-          ),
+          tabBarIcon: () => <Image resizeMode="cover" source={Film24} />,
         }}
       />
       <Tab.Screen
         name="TvShows"
         component={TvShowsStackScreen}
         options={{
-          title: 'Tv shows',
-          tabBarIcon: () => (
-            <MaterialIcons
-              name="live-tv"
-              size={responsiveWidth(BUTTOM_TABS_ICONS_SIZE)}
-            />
-          ),
+          tabBarIcon: () => <Image resizeMode="cover" source={Tv24} />,
         }}
       />
       <Tab.Screen
         name="Search"
         component={SearchStackScreen}
         options={{
-          title: 'Search',
-          tabBarIcon: () => (
-            <IoniconsIcon
-              name="search"
-              size={responsiveWidth(BUTTOM_TABS_ICONS_SIZE)}
-            />
-          ),
+          tabBarIcon: () => <Image resizeMode="cover" source={Search24} />,
         }}
       />
       <Tab.Screen
         name="MyList"
         component={MyListStackScreen}
         options={{
-          title: 'My list',
-          tabBarIcon: () => (
-            <IoniconsIcon
-              name="list"
-              size={responsiveWidth(BUTTOM_TABS_ICONS_SIZE)}
-            />
-          ),
+          tabBarIcon: () => <Image resizeMode="cover" source={List24} />,
         }}
       />
     </Tab.Navigator>
