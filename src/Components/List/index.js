@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {FlatList, TouchableOpacity} from 'react-native';
+import {FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {TheEnd} from '../TheEnd';
 import {Card} from '../../Components/Card';
@@ -44,7 +44,8 @@ export const List = ({navigation, route}) => {
     return (
       <TouchableOpacity
         onPress={() => handleOnPressItem(item)}
-        activeOpacity={0.7}>
+        activeOpacity={0.7}
+        style={styles.container}>
         <Card
           title={isMovie ? item.title : item.name}
           overview={item.overview}
@@ -72,7 +73,7 @@ export const List = ({navigation, route}) => {
       keyExtractor={item => item.id}
       onEndReachedThreshold={0.5}
       onEndReached={fetchNextPage}
-      style={{backgroundColor: 'white'}}
+      style={{backgroundColor: '#f8f8f8'}}
       ListFooterComponent={
         theEnd ? TheEnd : <CustomActivityIndicator size={30} />
       }
@@ -89,3 +90,17 @@ List.propTypes = {
   isMovie: PropTypes.bool,
   type: PropTypes.number,
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 14,
+    marginTop: 10,
+    borderWidth: 1,
+    borderRadius: 14,
+    overflow: 'hidden',
+    marginHorizontal: 14,
+    flexDirection: 'row',
+    borderColor: '#efe7e7',
+    backgroundColor: 'white',
+  },
+});
