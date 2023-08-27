@@ -53,9 +53,11 @@ export const converToDollars = val => {
 export const getGenresNames = val => {
   // val = [{id,name},{id,name}]
   let result = '';
-  for (let i = 0; i < val.length && i < 3; ++i) {
-    result += val[i].name;
-    result += i === val.length - 1 || i === 2 ? '' : ', ';
+  if (val && val.length > 0) {
+    for (let i = 0; i < val.length && i < 3; ++i) {
+      result += val[i].name;
+      result += i === val.length - 1 || i === 2 ? '' : ', ';
+    }
   }
   return result;
 };

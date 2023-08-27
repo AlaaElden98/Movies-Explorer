@@ -29,32 +29,40 @@ export const DetailsRow = props => {
           title: 'Duration',
           body: runtime ? convertMinutesToReadableTime(runtime) : '-',
         }
-      : {title: 'Seasons', body: number_of_seasons},
+      : {title: 'Seasons', body: number_of_seasons ?? '-'},
 
     number_of_episodes ? {title: 'Episodes', body: number_of_episodes} : {},
-    {title: 'Genres', body: getGenresNames(genres)},
-    {title: 'Language', body: language[original_language]},
-    {title: 'Status', body: status},
-    {
-      title: 'Date',
-      body: release_date && release_date !== '' ? release_date : '-',
-    },
-    {
-      title: 'Budget',
-      body: budget === 0 || !budget ? '-' : converToDollars(budget),
-    },
-    {
-      title: 'Revenue',
-      body: revenue === 0 || !revenue ? '-' : converToDollars(revenue),
-    },
+    genres ? {title: 'Genres', body: getGenresNames(genres)} : {},
+    original_language ? {title: 'Language', body: original_language} : {},
+    status ? {title: 'Status', body: status} : {},
+    release_date
+      ? {
+          title: 'Date',
+          body: release_date && release_date !== '' ? release_date : '-',
+        }
+      : {},
+    budget
+      ? {
+          title: 'Budget',
+          body: budget === 0 || !budget ? '-' : converToDollars(budget),
+        }
+      : {},
+    revenue
+      ? {
+          title: 'Revenue',
+          body: revenue === 0 || !revenue ? '-' : converToDollars(revenue),
+        }
+      : {},
   ];
 
   const renderItem = ({item}) => {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.body}>{item.body}</Text>
-      </View>
+      item && (
+        <View style={styles.container}>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.body}>{item.body}</Text>
+        </View>
+      )
     );
   };
   return (
