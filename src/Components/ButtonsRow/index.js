@@ -14,6 +14,8 @@ import {styles} from './styles';
 import {Touchable} from '../Touchable';
 import {addItem, removeItem} from '../../redux/myListSlice';
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
+import {Heart24, RedHeart24, Share24, World24} from '../../assests';
+
 export const ButtonsRow = props => {
   const {homepage, title, id, parent, poster_path} = props;
   const dispatch = useDispatch();
@@ -23,8 +25,6 @@ export const ButtonsRow = props => {
     myList.length > 0 && myList.find(_itemInList => _itemInList.id === id);
 
   const [inMyList, setInMyList] = useState(itemInList ? true : false);
-
-  const MyListIconName = inMyList ? 'check' : 'plus';
 
   const handleAddToList = () => {
     inMyList
@@ -78,26 +78,20 @@ export const ButtonsRow = props => {
       <Touchable
         onPress={handleAddToList}
         title="My list"
-        titleSize={responsiveFontSize(2.2)}
-        iconName={MyListIconName}
-        iconPlace="top"
-        iconSize={responsiveFontSize(4)}
+        iconSrc={inMyList ? RedHeart24 : Heart24}
+        titleSize={responsiveFontSize(1.6)}
       />
       <Touchable
         onPress={handleShare}
         title="Share"
-        titleSize={responsiveFontSize(2.2)}
-        iconName="share-variant"
-        iconPlace="top"
-        iconSize={responsiveFontSize(4)}
+        titleSize={responsiveFontSize(1.6)}
+        iconSrc={Share24}
       />
       <Touchable
         onPress={handleOfficialPage}
         title="Official page"
-        titleSize={responsiveFontSize(2.2)}
-        iconName="web"
-        iconPlace="top"
-        iconSize={responsiveFontSize(4)}
+        titleSize={responsiveFontSize(1.6)}
+        iconSrc={World24}
       />
     </View>
   );

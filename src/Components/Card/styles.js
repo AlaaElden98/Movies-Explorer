@@ -1,22 +1,23 @@
 import {StyleSheet} from 'react-native';
 
 import {
-  responsiveFontSize,
-  responsiveHeight,
   responsiveWidth,
+  responsiveHeight,
+  responsiveFontSize,
 } from '../../Utilis/helperFunctions';
+import Colors from '../../Constants/Colors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    padding: 15,
+    overflow: 'hidden',
   },
   imageContainer: {},
   image: {
-    width: responsiveWidth(30),
+    width: responsiveWidth(40),
     height: responsiveHeight(25),
-    borderRadius: 15,
+    borderRadius: 14,
   },
   title: {
     fontSize: responsiveFontSize(2.5),
@@ -35,7 +36,7 @@ export const styles = StyleSheet.create({
   },
   date: {
     fontSize: responsiveFontSize(2),
-    color: '#525252',
+    color: Colors.heavyDarkGray,
     fontStyle: 'italic',
   },
   rightSideContainer: {

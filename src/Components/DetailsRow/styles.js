@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 
+import Colors from '../../Constants/Colors';
 import {responsiveFontSize} from '../../Utilis/helperFunctions';
 
 export const styles = StyleSheet.create({
@@ -9,5 +10,5 @@ export const styles = StyleSheet.create({
     margin: 10,
   },
   title: {fontSize: responsiveFontSize(2.2)},
-  body: {fontSize: responsiveFontSize(2), color: '#525252'},
+  body: {fontSize: responsiveFontSize(2), color: Colors.heavyDarkGray},
 });

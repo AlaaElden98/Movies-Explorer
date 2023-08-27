@@ -1,10 +1,12 @@
 import React from 'react';
 import {Platform, ActivityIndicator, View} from 'react-native';
 
+import Colors from '../../Constants/Colors';
+
 export const CustomActivityIndicator = ({
   style = {},
   size = 50,
-  color = '#999999',
+  color = Colors.darkGray,
 }) => (
   <View style={style}>
     {Platform.OS === 'ios' ? (
