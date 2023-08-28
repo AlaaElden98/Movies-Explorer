@@ -9,7 +9,9 @@ import {responsiveHeight, responsiveWidth} from '../Utilis/helperFunctions';
 export const ImageComponent = props => {
   const {uri, style, resizeMode} = props;
   const [loading, setLoading] = useState();
-  const [error, setError] = useState();
+  const [error, setError] = useState(
+    typeof uri !== 'string' || !uri.length > 0 || uri === 'NO_IMAGE',
+  );
 
   const renderErrorHolder = () => (
     <Image

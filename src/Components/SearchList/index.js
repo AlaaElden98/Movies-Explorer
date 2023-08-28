@@ -1,24 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
-import {FlatList, View, TouchableOpacity} from 'react-native';
 import {useSelector} from 'react-redux';
-
-import {getSearchResults} from '../../Api/getSearchResults';
-import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
+import {FlatList, View, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {Card} from '../Card';
+import {getSearchResults} from '../../Api/getSearchResults';
+import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
+import {CustomActivityIndicator} from '../CustomActivityIndicator';
 
 export const SearchList = ({navigation}) => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
   const [imageBaseUrl, setImageBaseUrl] = useState();
+  const [loadMore, setLoadMore] = useState();
 
   const query = useSelector(state => state.search.query);
 
   const getSearch = async (pageNumber, newQuery = false) => {
     if (query === '' || !query) {
-      setSearchResults();
+      setSearchResults([]);
       return;
     }
     const data = await getSearchResults(query, pageNumber);
@@ -37,18 +38,32 @@ export const SearchList = ({navigation}) => {
     setImageBaseUrl(uri);
   }, []);
 
+  const handleOnPressItem = item => {
+    navigation.navigate('Details', {
+      parent: item.media_type,
+      id: item.id,
+      imageBaseUrl: imageBaseUrl,
+    });
+  };
+
+  const handleEndReached = () => {
+    if (page < totalPages) {
+      setLoadMore(true);
+      setPage(page + 1);
+      getSearch(page, false);
+    } else {
+      setLoadMore(false);
+    }
+  };
+
   const renderItem = ({item}) => {
     const mediaType = item.media_type;
     return (
-      mediaType !== 'person' && (
+      mediaType !== 'person' &&
+      item.poster_path && (
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Details', {
-              parent: mediaType,
-              id: item.id,
-              imageBaseUrl: imageBaseUrl,
-            });
-          }}>
+          onPress={() => handleOnPressItem(item)}
+          style={styles.container}>
           <Card
             title={mediaType === 'movie' ? item.title : item.name}
             overview={item.overview}
@@ -58,13 +73,21 @@ export const SearchList = ({navigation}) => {
             }
             original_language={item.original_language}
             imageUri={
-              item.poster_path != null
+              item.poster_path
                 ? imageBaseUrl + 'original' + item.poster_path
-                : 'NO_IMAGE'
+                : null
             }
           />
         </TouchableOpacity>
       )
+    );
+  };
+
+  const renderFooter = () => {
+    return loadMore && searchResults?.length > 0 ? (
+      <CustomActivityIndicator size={30} />
+    ) : (
+      <View style={{padding: 5}} />
     );
   };
 
@@ -75,15 +98,24 @@ export const SearchList = ({navigation}) => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
         onEndReachedThreshold={0.5}
-        onEndReached={
-          page < totalPages
-            ? () => {
-                setPage(page + 1);
-                getSearch(page, false);
-              }
-            : null
-        }
+        onEndReached={handleEndReached}
+        ListFooterComponent={renderFooter}
+        contentContainerStyle={{paddingBottom: 100}}
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 14,
+    marginTop: 10,
+    borderWidth: 1,
+    borderRadius: 14,
+    overflow: 'hidden',
+    marginHorizontal: 14,
+    flexDirection: 'row',
+    borderColor: '#efe7e7',
+    backgroundColor: 'white',
+  },
+});

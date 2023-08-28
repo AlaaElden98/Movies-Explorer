@@ -13,7 +13,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     overflow: 'hidden',
   },
-  imageContainer: {},
   image: {
     width: responsiveWidth(40),
     height: responsiveHeight(25),
