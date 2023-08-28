@@ -1,11 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
+import LottieView from 'lottie-react-native';
 import {FlatList, View, TouchableOpacity, StyleSheet} from 'react-native';
 
 import {Card} from '../Card';
 import {getSearchResults} from '../../Api/getSearchResults';
 import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
+import {responsiveHeight} from '../../Utilis/helperFunctions';
+import AnimatedSearch from '../../assests/animatedSearch2.json';
 import {CustomActivityIndicator} from '../CustomActivityIndicator';
 
 export const SearchList = ({navigation}) => {
@@ -14,6 +17,8 @@ export const SearchList = ({navigation}) => {
   const [searchResults, setSearchResults] = useState([]);
   const [imageBaseUrl, setImageBaseUrl] = useState();
   const [loadMore, setLoadMore] = useState();
+  const [loading, setLoading] = useState(false);
+  let lottieRef = null;
 
   const query = useSelector(state => state.search.query);
 
@@ -22,11 +27,14 @@ export const SearchList = ({navigation}) => {
       setSearchResults([]);
       return;
     }
+    setLoading(true);
+    if (lottieRef) lottieRef.play();
     const data = await getSearchResults(query, pageNumber);
     searchResults && !newQuery
       ? setSearchResults([...searchResults, ...data.results])
       : setSearchResults(data.results);
     setTotalPages(data.total_pages);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -91,17 +99,37 @@ export const SearchList = ({navigation}) => {
     );
   };
 
+  const renderLoading = () => (
+    <LottieView
+      ref={ref => {
+        lottieRef = ref;
+      }}
+      source={AnimatedSearch}
+      autoPlay
+      loop
+      style={{
+        marginTop: '50%',
+        alignSelf: 'center',
+        height: responsiveHeight(10),
+      }}
+    />
+  );
+
   return (
-    <View>
-      <FlatList
-        data={searchResults}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        onEndReachedThreshold={0.5}
-        onEndReached={handleEndReached}
-        ListFooterComponent={renderFooter}
-        contentContainerStyle={{paddingBottom: 100}}
-      />
+    <View style={{flex: 1}}>
+      {loading ? (
+        renderLoading()
+      ) : (
+        <FlatList
+          data={searchResults}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          onEndReachedThreshold={0.5}
+          onEndReached={handleEndReached}
+          ListFooterComponent={renderFooter}
+          contentContainerStyle={{paddingBottom: 100}}
+        />
+      )}
     </View>
   );
 };
