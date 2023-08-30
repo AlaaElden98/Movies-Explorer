@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   query: '',
+  trendingSearches: [],
 };
 
 const searchSlice = createSlice({
@@ -11,9 +12,12 @@ const searchSlice = createSlice({
     updateQuery: (state, action) => {
       state.query = action.payload;
     },
+    updateTrendingSearches: (state, action) => {
+      state.trendingSearches = action.payload;
+    },
   },
 });
 
-export const {updateQuery} = searchSlice.actions;
+export const {updateQuery, updateTrendingSearches} = searchSlice.actions;
 
 export default searchSlice.reducer;

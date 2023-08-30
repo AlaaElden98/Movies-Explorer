@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import {useDispatch} from 'react-redux';
 import {FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {TheEnd} from '../TheEnd';
@@ -8,6 +9,7 @@ import {Card} from '../../Components/Card';
 import Colors from '../../Constants/Colors';
 import {getDataAbout} from '../../Api/getData';
 import {getImagesBaseUrl} from '../../Api/getImagesBaseUrl';
+import {updateTrendingSearches} from '../../redux/searchSlice';
 import {CustomActivityIndicator} from '../CustomActivityIndicator';
 
 export const List = ({navigation, route}) => {
@@ -17,11 +19,14 @@ export const List = ({navigation, route}) => {
   const [totalPages, setTotalPages] = useState(0);
   const [theEnd, setTheEnd] = useState(0);
   const [imageBaseUrl, setImageBaseUrl] = useState();
+  const dispatch = useDispatch();
+  let firstTimeFetching = true;
 
   const getMovies = async () => {
     const data = await getDataAbout(isMovie, type, pageNumber);
     movies ? setMovies([...movies, ...data.results]) : setMovies(data.results);
     setTotalPages(data.total_pages);
+    hanldeTrendingSearch(data.results);
   };
 
   useEffect(() => {
@@ -39,6 +44,14 @@ export const List = ({navigation, route}) => {
       id: item.id,
       imageBaseUrl: imageBaseUrl,
     });
+  };
+
+  const hanldeTrendingSearch = data => {
+    if (firstTimeFetching && data && isMovie && type === 3) {
+      const trendingMovies = data.slice(0, 15);
+      dispatch(updateTrendingSearches(trendingMovies));
+      firstTimeFetching = false;
+    }
   };
 
   const renderItem = ({item}) => {
