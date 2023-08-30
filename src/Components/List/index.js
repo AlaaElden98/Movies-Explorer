@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginHorizontal: 14,
     flexDirection: 'row',
-    borderColor: '#efe7e7',
     backgroundColor: 'white',
+    borderColor: Colors.lightGrayishRed2,
   },
 });
