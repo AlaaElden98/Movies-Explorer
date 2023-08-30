@@ -70,7 +70,11 @@ const MyListScreen = ({navigation, route}) => {
       style={styles.emptyStateContainer}
       onPress={handleOnPressEmptyState}
       activeOpacity={0.9}>
-      <Image source={MyListEmptyState} />
+      <Image
+        source={MyListEmptyState}
+        style={{width: responsiveWidth(70), height: responsiveHeight(35)}}
+        resizeMode="cover"
+      />
       <Text style={styles.emptyStateText}>
         Add Movies and Tv-shows to see them here!
       </Text>
@@ -115,6 +119,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  emptyStateText: {fontSize: responsiveFontSize(1.3), color: Colors.darkGray},
+  emptyStateText: {
+    width: '100%',
+    color: Colors.darkGray,
+    marginLeft: responsiveWidth(20),
+    fontSize: responsiveFontSize(1.8),
+  },
 });
 export default MyListScreen;

@@ -13,6 +13,7 @@ import {
 
 import {Card} from '../Card';
 import {
+  responsiveWidth,
   responsiveHeight,
   responsiveFontSize,
 } from '../../Utilis/helperFunctions';
@@ -182,7 +183,11 @@ export const SearchList = ({navigation}) => {
 
   const renderEmptyState = () => (
     <View style={styles.emptyStateContainer}>
-      <Image source={SearchEmptyState} />
+      <Image
+        source={SearchEmptyState}
+        style={{width: responsiveWidth(50), height: responsiveHeight(30)}}
+        resizeMode="cover"
+      />
       <Text style={styles.emptyStateText}>
         hmmm, we can't find the title you want!
       </Text>
@@ -197,7 +202,7 @@ export const SearchList = ({navigation}) => {
       onEndReachedThreshold={0.5}
       onEndReached={handleEndReached}
       ListFooterComponent={renderFooter}
-      contentContainerStyle={{paddingBottom: 100, flex: 1}}
+      contentContainerStyle={{paddingBottom: responsiveHeight(2)}}
       ListEmptyComponent={renderEmptyState}
     />
   );
@@ -232,13 +237,14 @@ const styles = StyleSheet.create({
   },
   emptyStateContainer: {
     flex: 1,
+    paddingTop: '40%',
     alignItems: 'center',
     justifyContent: 'center',
   },
   emptyStateText: {
     paddingTop: 10,
     color: Colors.darkGray,
-    fontSize: responsiveFontSize(1.6),
+    fontSize: responsiveFontSize(1.8),
   },
   initialTitle: {marginHorizontal: 10, fontSize: responsiveFontSize(1.8)},
   trendingTitle: {color: Colors.strongRed, fontSize: responsiveFontSize(1.5)},
