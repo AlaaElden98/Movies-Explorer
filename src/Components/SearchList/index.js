@@ -185,8 +185,8 @@ export const SearchList = ({navigation}) => {
     <View style={styles.emptyStateContainer}>
       <Image
         source={SearchEmptyState}
-        style={{width: responsiveWidth(50), height: responsiveHeight(30)}}
-        resizeMode="cover"
+        style={{width: responsiveWidth(60), height: responsiveHeight(30)}}
+        resizeMode="contain"
       />
       <Text style={styles.emptyStateText}>
         hmmm, we can't find the title you want!
