@@ -1,12 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {View, FlatList, StyleSheet, TouchableOpacity} from 'react-native';
 
+import {
+  responsiveWidth,
+  responsiveHeight,
+  responsiveFontSize,
+} from '../Utilis/helperFunctions';
+import Colors from '../Constants/Colors';
+import {MyListEmptyState} from '../assests';
 import {getImagesBaseUrl} from '../Api/getImagesBaseUrl';
 import {ImageComponent} from '../Components/ImageComponent';
 import {getListFromAsyncStorage} from '../redux/myListSlice';
-import {responsiveHeight, responsiveWidth} from '../Utilis/helperFunctions';
 
 const MyListScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -48,17 +61,37 @@ const MyListScreen = ({navigation, route}) => {
     </TouchableOpacity>
   );
 
+  const handleOnPressEmptyState = () => {
+    navigation.navigate('Movies');
+  };
+
+  const renderEmptyState = () => (
+    <TouchableOpacity
+      style={styles.emptyStateContainer}
+      onPress={handleOnPressEmptyState}
+      activeOpacity={0.9}>
+      <Image source={MyListEmptyState} />
+      <Text style={styles.emptyStateText}>
+        Add Movies and Tv-shows to see them here!
+      </Text>
+    </TouchableOpacity>
+  );
+
   return (
     <View style={{flex: 1}}>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        numColumns={3}
-        contentContainerStyle={styles.contentContainer}
-        ItemSeparatorComponent={() => <View style={{padding: 6}} />}
-        columnWrapperStyle={styles.columnWrapper}
-      />
+      {DATA && DATA.length > 0 ? (
+        <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          numColumns={3}
+          contentContainerStyle={styles.contentContainer}
+          ItemSeparatorComponent={() => <View style={{padding: 6}} />}
+          columnWrapperStyle={styles.columnWrapper}
+        />
+      ) : (
+        renderEmptyState()
+      )}
     </View>
   );
 };
@@ -77,5 +110,11 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     alignItems: 'flex-start',
   },
+  emptyStateContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  emptyStateText: {fontSize: responsiveFontSize(1.3), color: Colors.darkGray},
 });
 export default MyListScreen;
