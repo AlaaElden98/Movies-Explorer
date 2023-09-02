@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'MoviesExplorerIos' do
+target 'MoviesTime' do
   config = use_native_modules!
 
   use_react_native!(
@@ -18,7 +18,7 @@ target 'MoviesExplorerIos' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
-  target 'MoviesExplorerIosTests' do
+  target 'MoviesTimeTests' do
     inherit! :complete
     # Pods for testing
   end

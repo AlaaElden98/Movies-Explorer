@@ -136,7 +136,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.moviesexplorerios"
+        applicationId "com.moviestime"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
