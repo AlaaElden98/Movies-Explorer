@@ -521,7 +521,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moviestime";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.triplea.moviestime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoviesTime.app/MoviesTime";
 			};
@@ -545,7 +545,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moviestime";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.triplea.moviestime";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoviesTime.app/MoviesTime";
 			};
@@ -570,7 +570,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moviestime";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.triplea.moviestime";
 				PRODUCT_NAME = "MoviesTime";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -596,7 +596,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.moviestime";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.triplea.moviestime";
 				PRODUCT_NAME = "MoviesTime";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

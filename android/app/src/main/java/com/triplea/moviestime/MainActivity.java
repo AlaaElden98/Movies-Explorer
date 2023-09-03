@@ -1,4 +1,4 @@
-package com.moviestime;
+package com.triplea.moviestime;
 
 import android.os.Bundle; // here
 import com.facebook.react.ReactActivity;
