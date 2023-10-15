@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {
   View,
@@ -30,13 +29,17 @@ const MyListScreen = ({navigation, route}) => {
 
   const [imageBaseUrl, setImageBaseUrl] = useState();
 
-  useEffect(async () => {
-    const uri = await getImagesBaseUrl();
-    setImageBaseUrl(uri);
+  useEffect(() => {
+    async function fetchData() {
+      const uri = await getImagesBaseUrl();
+      setImageBaseUrl(uri);
+    }
+    fetchData();
   }, []);
 
   useEffect(() => {
     getMyList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const DATA = useSelector(state => state.myList.items);
@@ -52,7 +55,8 @@ const MyListScreen = ({navigation, route}) => {
   const renderItem = ({item}) => (
     <TouchableOpacity
       onPress={() => handleOnPressItem(item)}
-      activeOpacity={0.7}>
+      activeOpacity={0.7}
+    >
       <ImageComponent
         uri={imageBaseUrl + 'original' + item.poster_path}
         resizeMode="stretch"
@@ -69,7 +73,8 @@ const MyListScreen = ({navigation, route}) => {
     <TouchableOpacity
       style={styles.emptyStateContainer}
       onPress={handleOnPressEmptyState}
-      activeOpacity={0.9}>
+      activeOpacity={0.9}
+    >
       <Image
         source={MyListEmptyState}
         style={{width: responsiveWidth(70), height: responsiveHeight(35)}}

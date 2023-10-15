@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
@@ -31,11 +30,15 @@ export const List = ({navigation, route}) => {
 
   useEffect(() => {
     getMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber]);
 
-  useEffect(async () => {
-    const uri = await getImagesBaseUrl();
-    setImageBaseUrl(uri);
+  useEffect(() => {
+    async function fetchData() {
+      const uri = await getImagesBaseUrl();
+      setImageBaseUrl(uri);
+    }
+    fetchData();
   }, []);
 
   const handleOnPressItem = item => {
@@ -59,7 +62,8 @@ export const List = ({navigation, route}) => {
       <TouchableOpacity
         onPress={() => handleOnPressItem(item)}
         activeOpacity={0.7}
-        style={styles.container}>
+        style={styles.container}
+      >
         <Card
           title={isMovie ? item.title : item.name}
           overview={item.overview}

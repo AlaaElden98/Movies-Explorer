@@ -1,6 +1,6 @@
 {
-  "name": "moviesexplorerios",
-  "version": "0.0.1",
+  "name": "moviestime",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "ios": "react-native run-ios",
@@ -25,14 +25,14 @@
     "identity-obj-proxy": "^3.0.0",
     "lottie-react-native": "^5.1.6",
     "prop-types": "^15.7.2",
-    "react": "17.0.1",
-    "react-native": "0.64.4",
+    "react": "17.0.2",
+    "react-native": "0.68.0",
     "react-native-config": "^1.4.2",
     "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-image-viewing": "^0.2.0",
     "react-native-modalize": "^2.0.8",
-    "react-native-reanimated": "^2.2.0",
+    "react-native-reanimated": "^2.9.1",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.4.0",
     "react-native-splash-screen": "^3.3.0",
@@ -46,10 +46,10 @@
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
-    "eslint": "7.14.0",
+    "eslint": "^7.32.0",
     "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.66.1",
-    "react-test-renderer": "17.0.1"
+    "metro-react-native-babel-preset": "^0.67.0",
+    "react-test-renderer": "17.0.2"
   },
   "jest": {
     "preset": "react-native",

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import LottieView from 'lottie-react-native';
@@ -62,11 +61,15 @@ export const SearchList = ({navigation}) => {
 
   useEffect(() => {
     getSearch(1, true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
 
-  useEffect(async () => {
-    const uri = await getImagesBaseUrl();
-    setImageBaseUrl(uri);
+  useEffect(() => {
+    async function fetchData() {
+      const uri = await getImagesBaseUrl();
+      setImageBaseUrl(uri);
+    }
+    fetchData();
   }, []);
 
   const handleOnPressItem = item => {
@@ -102,7 +105,8 @@ export const SearchList = ({navigation}) => {
       item.poster_path && (
         <TouchableOpacity
           onPress={() => handleOnPressItem(item)}
-          style={styles.container}>
+          style={styles.container}
+        >
           <Card
             title={mediaType === 'movie' ? item.title : item.name}
             overview={item.overview}
@@ -172,7 +176,8 @@ export const SearchList = ({navigation}) => {
               key={index}
               activeOpacity={0.7}
               style={styles.trendingItem}
-              onPress={() => handleOnPressTrendingItem(item)}>
+              onPress={() => handleOnPressTrendingItem(item)}
+            >
               <Text style={styles.trendingTitle}>{item.title}</Text>
             </TouchableOpacity>
           ))}
