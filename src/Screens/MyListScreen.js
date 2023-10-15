@@ -5,6 +5,7 @@ import {
   Image,
   FlatList,
   StyleSheet,
+  Dimensions,
   TouchableOpacity,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
@@ -55,11 +56,9 @@ const MyListScreen = ({navigation, route}) => {
   const renderItem = ({item}) => (
     <TouchableOpacity
       onPress={() => handleOnPressItem(item)}
-      activeOpacity={0.7}
-    >
+      activeOpacity={0.7}>
       <ImageComponent
         uri={imageBaseUrl + 'original' + item.poster_path}
-        resizeMode="stretch"
         style={styles.image}
       />
     </TouchableOpacity>
@@ -73,8 +72,7 @@ const MyListScreen = ({navigation, route}) => {
     <TouchableOpacity
       style={styles.emptyStateContainer}
       onPress={handleOnPressEmptyState}
-      activeOpacity={0.9}
-    >
+      activeOpacity={0.9}>
       <Image
         source={MyListEmptyState}
         style={{width: responsiveWidth(70), height: responsiveHeight(35)}}
@@ -108,12 +106,12 @@ const MyListScreen = ({navigation, route}) => {
 const styles = StyleSheet.create({
   image: {
     borderRadius: 15,
-    width: responsiveWidth(30),
-    height: responsiveHeight(30),
+    width: Dimensions.get('screen').width / 3,
+    height: responsiveHeight(25),
   },
   columnWrapper: {
     width: '100%',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
   },
   contentContainer: {
     paddingVertical: 8,

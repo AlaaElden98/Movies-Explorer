@@ -17,11 +17,7 @@ export const Card = props => {
   const {imageUri, title, rate, date, original_language} = props;
   return (
     <View style={styles.container}>
-      <ImageComponent
-        uri={imageUri}
-        style={styles.image}
-        resizeMode="stretch"
-      />
+      <ImageComponent uri={imageUri} style={styles.image} />
       <View style={styles.rightSideContainer}>
         <Text numberOfLines={3} ellipsizeMode="tail" style={styles.title}>
           {title}

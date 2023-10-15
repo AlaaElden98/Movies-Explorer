@@ -105,8 +105,7 @@ export const SearchList = ({navigation}) => {
       item.poster_path && (
         <TouchableOpacity
           onPress={() => handleOnPressItem(item)}
-          style={styles.container}
-        >
+          style={styles.container}>
           <Card
             title={mediaType === 'movie' ? item.title : item.name}
             overview={item.overview}
@@ -176,8 +175,7 @@ export const SearchList = ({navigation}) => {
               key={index}
               activeOpacity={0.7}
               style={styles.trendingItem}
-              onPress={() => handleOnPressTrendingItem(item)}
-            >
+              onPress={() => handleOnPressTrendingItem(item)}>
               <Text style={styles.trendingTitle}>{item.title}</Text>
             </TouchableOpacity>
           ))}
@@ -251,6 +249,10 @@ const styles = StyleSheet.create({
     color: Colors.darkGray,
     fontSize: responsiveFontSize(1.8),
   },
-  initialTitle: {marginHorizontal: 10, fontSize: responsiveFontSize(1.8)},
+  initialTitle: {
+    color: 'black',
+    marginHorizontal: 10,
+    fontSize: responsiveFontSize(1.8),
+  },
   trendingTitle: {color: Colors.strongRed, fontSize: responsiveFontSize(1.5)},
 });

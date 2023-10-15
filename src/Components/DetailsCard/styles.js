@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   overvieContainer: {padding: 10, margin: 1},
-  overviewTitle: {fontSize: responsiveFontSize(2.8)},
+  overviewTitle: {fontSize: responsiveFontSize(2.8), color: 'black'},
   overviewBody: {
     fontSize: responsiveFontSize(2.2),
     color: Colors.heavyDarkGray,

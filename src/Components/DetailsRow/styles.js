@@ -9,6 +9,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
   },
-  title: {fontSize: responsiveFontSize(2.2)},
+  title: {fontSize: responsiveFontSize(2.2), color: 'black'},
   body: {fontSize: responsiveFontSize(2), color: Colors.heavyDarkGray},
 });

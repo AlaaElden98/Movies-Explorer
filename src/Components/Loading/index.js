@@ -1,10 +1,12 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
+import Colors from '../../Constants/Colors';
+
 export const Loading = () => {
   return (
     <View style={styles.container}>
-      <Text>Loading...</Text>
+      <Text style={{color: Colors.heavyDarkGray}}>Loading...</Text>
     </View>
   );
 };

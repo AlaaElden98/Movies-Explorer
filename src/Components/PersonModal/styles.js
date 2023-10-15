@@ -12,8 +12,7 @@ export const styles = StyleSheet.create({
   mainInfoContainer: {flexDirection: 'row'},
   image: {
     width: responsiveWidth(35),
-    height: responsiveHeight(35),
-    borderRadius: 30,
+    height: responsiveHeight(25),
   },
   mainInfo: {
     flex: 1,
@@ -22,6 +21,7 @@ export const styles = StyleSheet.create({
   },
   head: {
     fontSize: responsiveFontSize(3),
+    color: 'black',
   },
   body: {
     fontSize: responsiveFontSize(2.3),

@@ -36,7 +36,7 @@ export const ImageComponent = props => {
   }
 
   return (
-    <View>
+    <View style={{borderRadius: 14, overflow: 'hidden'}}>
       {typeof uri === 'string' && uri.length > 0 && uri !== 'NO_IMAGE' ? (
         <FastImage
           source={{uri}}

@@ -45,7 +45,6 @@ export const PersonModal = props => {
             <ImageComponent
               uri={ImageUrl(imageBaseUrl, personInfo.profile_path)}
               style={styles.image}
-              resizeMode="cover"
             />
             <View style={styles.mainInfo}>
               <Text style={styles.head}>{personInfo.name}</Text>
@@ -72,7 +71,7 @@ export const PersonModal = props => {
           ) : null}
         </ScrollView>
       ) : (
-        <Text>Loading...</Text>
+        <Text style={{color: 'black'}}>Loading...</Text>
       )}
     </Modalize>
   );

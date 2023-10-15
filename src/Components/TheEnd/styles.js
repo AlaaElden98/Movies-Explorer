@@ -9,5 +9,6 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontSize: responsiveFontSize(2),
+    color: 'black',
   },
 });

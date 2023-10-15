@@ -18,7 +18,7 @@ export const CastRow = props => {
       <TouchableOpacity onPress={() => handlePress(item.id)}>
         <View style={styles.personContainer}>
           <ImageComponent uri={imageUri} style={styles.personImage} />
-          <Text>{item.name}</Text>
+          <Text style={styles.personName}>{item.name}</Text>
         </View>
       </TouchableOpacity>
     );

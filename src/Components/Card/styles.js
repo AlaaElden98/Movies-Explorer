@@ -14,13 +14,13 @@ export const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   image: {
-    width: responsiveWidth(40),
+    width: responsiveWidth(35),
     height: responsiveHeight(25),
-    borderRadius: 14,
   },
   title: {
     fontSize: responsiveFontSize(2.5),
     fontWeight: 'bold',
+    color: Colors.heavyDarkGray,
   },
   overview: {fontSize: responsiveFontSize(2)},
   rate: {
